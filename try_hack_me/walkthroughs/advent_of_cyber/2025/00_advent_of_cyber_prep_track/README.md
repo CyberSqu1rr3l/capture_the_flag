@@ -53,11 +53,20 @@ one, for example `GrR43@St0nG#`.
 
 Challenge 8 - The App Trap
 -----------------------------------------------------------------------------------------
+By reviewing the list of connected apps, we discover the permission "Password Vault" in
+the Easmas Scheduler app. Due to its malicious nature, we revoke this permission and are
+rewarded with the flag.
 
 Challenge 9 - The Chatbot Confession
 -----------------------------------------------------------------------------------------
+In this adversarial machine learning attack, we uncover sensitive information. In the
+chat with the FestiveBot, a URL to the staging admin, email credentials and a service
+token are revealed which should not have happened.
 
-Challenge 10 - The Chatbot Confession
+Challenge 10 - The Bunny’s Browser Trail
 -----------------------------------------------------------------------------------------
+Here, we are expected to read the provided web log entries and uncover a GET request to
+the sensitive `/admin/panel` from an unusual `BunnyOS` host which is to be classified as
+unusual.
 
 [^1]: https://tryhackme.com/room/adventofcyberpreptrack
