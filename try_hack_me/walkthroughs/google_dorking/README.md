@@ -7,9 +7,8 @@
 '.   \) \'. `---' .`'. `---' .`'.   \) \(.-.__)\ \_      | |// '. `---' .`)|\\(/\)\ `. (_/\_) ||  ||'.   \) \ 
   `-.(_.'  `-...-'    `-...-'    `-.(_.' `-'    \__)     \__/    `-...-' (/  \)    `._)      (_/  \_) `-.(_.'     
 ```
-Explaining how Search Engines work and leveraging them into finding hidden content!
-This TryHackMe room explains how Search Engines work and leverages them into finding
-hidden content. [^1]
+This TryHackMe room "Google Dorking" explains how Search Engines work and leverages them
+into finding hidden content. [^1]
 
 QUESTION 1
 -----------------------------------------------------------------------------------------
@@ -22,24 +21,51 @@ later search.
 
 QUESTION 2
 -----------------------------------------------------------------------------------------
+**What is the name of the technique that "Search Engines" use to retrieve this information
+about websites?**
+
+Search Engines use *crawling* to traverse every URL and file on a website
+
 QUESTION 3
 -----------------------------------------------------------------------------------------
+**What is an example of the type of contents that could be gathered from a website?**
+
+
+
+
 QUESTION 4
 -----------------------------------------------------------------------------------------
+**Where would "robots.txt" be located on the domain "ablog[.]com"?**
+
 QUESTION 5
 -----------------------------------------------------------------------------------------
+**If a website was to have a sitemap, where would that be located?**
+
 QUESTION 6
 -----------------------------------------------------------------------------------------
+**How would we only allow "Bingbot" to index the website?**
+
 QUESTION 7
 -----------------------------------------------------------------------------------------
+**How would we prevent a "Crawler" from indexing the directory "/dont-index-me/"?**
+
 QUESTION 8
 -----------------------------------------------------------------------------------------
+**What is the extension of a Unix/Linux system configuration file that we might want to
+hide from "Crawlers"?**
+
 QUESTION 9
 -----------------------------------------------------------------------------------------
+**What is the typical file structure of a "Sitemap"?**
+
 QUESTION 10
 -----------------------------------------------------------------------------------------
+**What real life example can "Sitemaps" be compared to?**
+
 QUESTION 11
 -----------------------------------------------------------------------------------------
+**Name the keyword for the path taken for content on a website.**
+
 QUESTION 12
 -----------------------------------------------------------------------------------------
 QUESTION 13
