@@ -5,7 +5,7 @@
 ▘ ▘▝▀▘ ▘ ▝▀▘▘ ▘ ▀  ▝▀ ▐   ▝▀ ▗▄▘▀▀ ▝▀▘▘   ▘  ▘  ▝▀▘▌    ▘▘  ▝▀▘▝▀ ▘ ▘
 ```
 Get ready for the Advent of Cyber 2025 with the "Advent of Cyber Prep Track", a series of
-warm-up tasks aimed to get beginners ready for this year's event. [^1]
+warm-up tasks aimed to get beginners ready for this year's event on TryHackMe. [^1]
 
 Challenge 1 - Password Pandemonium
 -----------------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ a `MalhareTrojan`. The file should thus be classified as malicious.
 
 Challenge 3 - Welcome to the AttackBox!
 -----------------------------------------------------------------------------------------
-This introductionary task requires us to navigate the command line to view the flag.
+This introductory task requires us to navigate the command line to view the flag.
 We list the directory with `ls`, use `cd challenges` to change the directory and read the
 text file with `cat welcome.txt`.
 
