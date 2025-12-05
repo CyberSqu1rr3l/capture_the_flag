@@ -58,33 +58,24 @@ easter eggs, that will combine into a passcode to unlock the encrypted vault.
 We are now tasked to find the fragments from these clues, join them together and use the
 resulting passcode to decrypt the message.
 
-IDEAS
------
--> shell session: pstree -aps $$ to display a tree of processes
+1. **PASSFRAG1:** The hint suggests the secret is tied to the session environment, not
+   the filesystem. Further, we are advised to investigate something the shell uses upon
+   initialization. This makes us suspicious of the `.bashrc` configuration file and
+   indeed, in the end of the file there is the desired exported variable `PASSFRAG1`.
+3. **PASSFRAG2:** At first, we look at the running process with `pstree` but can not
+   discover anything interesting. Then, we disover a hidden git repository `.secret_git`
+   and with the hint suggesting historical entries, we examine the `git log` entries.
+   There are two commits, with the first one being interesting due to "add private note".
+   By using the commit identification, we can show the file from this commit with the
+   command `git show d12875c8b62e089320880b9b7e41d6765818af3d`. And in turn, the private
+   note from McSkidy contains the second `PASSFRAG2` for us to store.
+5. **PASSFRAG3:** This clue clearly references images, so we search the `~/Pictures`
+   folder and discover a hidden file `.easter_egg`. Since it is a text file, we can open
+   it and discover the final key piece `PASSFRAG3` in the end of the file.
 
-```
-systemd,1
-  └─tigervncserver,1346 /usr/bin/tigervncserver -xstartup /usr/bin/mate-session -SecurityTypes VncAuth,TLSVnc -depth 16 -geometry ...
-      └─mate-session,1367
-          └─mate-terminal,2234 --maximize
-              └─bash,2478
-                  └─sudo,2487 su mcskidy
-                      └─sudo,2488 su mcskidy
-                          └─su,2494 mcskidy
-                              └─bash,2520
-                                  └─su,2994 eddi_knapp
-                                      └─bash,2995
-                                          └─pstree,3805 -aps 2995
-```
-This output shows a chain of processes that began with systemd starting a VNC session. Users are switching between each other using sudo and su, likely for privilege escalation or changing user contexts. The final process, pstree, is just being executed to view the hierarchical structure of the running processes.
-not suspicious?
+Putting these three pieces together, we can form the final passcode that is used to
+unlock the encrypted vault `mcskidy_note.gpg` in the documents folder.
 
-https://www.publicdomainpictures.net/en/view-image.php?image=489172
-
-printenv results in:
-OLDPWD=/home/eddi_knapp/.secret
-
--> start up ledger, a command-line accounting system
 TBC [^2]
 
 [^1]: https://tryhackme.com/room/linuxcli-aoc2025-o1fpqkvxti
