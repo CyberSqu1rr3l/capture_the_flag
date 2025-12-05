@@ -74,7 +74,38 @@ resulting passcode to decrypt the message.
    it and discover the final key piece `PASSFRAG3` in the end of the file.
 
 Putting these three pieces together, we can form the final passcode that is used to
-unlock the encrypted vault `mcskidy_note.gpg` in the documents folder.
+unlock the encrypted vault `mcskidy_note.gpg` in the documents folder with `$ gpg --batch
+--yes --passphrase-fd 0 -d mcskidy_note.txt.gpg` followed by the obtained passcode. Upon
+reading McSkidy's note we are tasked with further instructions. Now, we need to replace
+the contents of the `/home/socmas/2025/wishlist.txt` file with the following list to
+stop the takeover glitching and save the site.
+
+```
+Hardware security keys (YubiKey or similar)
+Commercial password manager subscriptions (team seats)
+Endpoint detection & response (EDR) licenses
+Secure remote access appliances (jump boxes)
+Cloud workload scanning credits (container/image scanning)
+Threat intelligence feed subscription
+
+Secure code review / SAST tool access
+Dedicated secure test lab VM pool
+Incident response runbook templates and playbooks
+Electronic safe drive with encrypted backups
+```
+```
+When the wishlist is corrected, the site will show a block of ciphertext. This ciphertext can be decrypted with the following unlock key:
+
+UNLOCK_KEY: 91J6X7R4FQ9TQPM9JX2Q9X2Z
+
+To decode the ciphertext, use OpenSSL. For instance, if you copied the ciphertext into a file /tmp/website_output.txt you could decode using the following command:
+
+cat > /tmp/website_output.txt
+openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -salt -base64 -in /tmp/website_output.txt -out /tmp/decoded_message.txt -pass pass:'91J6X7R4FQ9TQPM9JX2Q9X2Z'
+cat /tmp/decoded_message.txt
+
+Sorry to be so convoluted, I couldn't risk making this easy while King Malhare watches. — McSkidy
+```
 
 TBC [^2]
 
