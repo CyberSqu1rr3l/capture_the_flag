@@ -20,17 +20,17 @@ Attack. There are two options on the mass e-mailer, we can either choose to send
 to one individual person or to all addresses in a specified list. In this example, start
 by sending an email to the single email address `factory@wareville[.]thm`.
 
-- *phishing>* Send email to: **factory@wareville[.]thm**
-- *phishing>* **2** (Use your own server or open relay)
-- *phishing>* From address: **updates@flyingdeer[.]thm**
+- *phishing>* Send email to: **factory@wareville[.]thm** (the target e-mail address)
+- *phishing>* **2** (use your own server or open relay)
+- *phishing>* From address: **updates@flyingdeer[.]thm** (the sender who is known to the target)
 - *phishing>* The FROM NAME the user will see: **Flying Deer**
-- *phishing>* SMTP email server address: **<TBFC_MAIL_SERVER_TARGET_IP>**
-- *phishing>* Port number for the SMTP server [25]: **25** (default value)
-- *phishing>* Flag this message as high priority: **no** (can be high priority too)
+- *phishing>* SMTP email server address: **<TBFC_MAIL_SERVER_TARGET_IP>** (skip the open-relay credentials)
+- *phishing>* Port number for the SMTP server [25]: **25** (leave it at the default value)
+- *phishing>* Flag this message as high priority: **no** (can be set to a high priority too)
 - *phishing>* Do you want to attach a(n inline) file: **n**
 - *phishing>* Email subject: **Shipping Schedule Changes**
 - *phishing>* Send the message as html or plain? 'h' or 'p' [p]: **p**
-- *phishing>* Enter the body of the message, and type END (capitals) when finished:
+- *phishing>* Enter the body of the message, and type END when finished: (create a convincing message like below)
 
 > Dear TBFC-Team,
 >
