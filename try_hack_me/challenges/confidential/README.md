@@ -25,4 +25,4 @@ the later two being excalamation marker graphics and the first one being the und
 document. Finally, we can open the confidential file `image-000.png` and scan the raw,
 secret QR code with our phone to get prompted with the flag.
 
-[^1] https://tryhackme.com/room/confidential
+[^1]: https://tryhackme.com/room/confidential
