@@ -53,12 +53,20 @@ by sending an email to the single email address `factory@wareville[.]thm`.
 > Rudolf <br>
 > Head of Shipment <br>
 > Flying Deer Shipping Company <br>
-> updates@flyingdeer.thm <br>
+> updates@flyingdeer[.]thm <br>
 > END
+
+After a few minutes, we are rewarded with the username `admin` and password to log in to
+the undisclosed TBFC portal.
 
 What is the total number of toys expected for delivery?
 -----------------------------------------------------------------------------------------
-Browse to http://MACHINE_IP from within the AttackBox and try to access the mailbox of the factory user to see if the previously harvested admin password has been reused on the email portal.
+In this task, browse the `http://<TARGET_IP_ADDRESS>` website from within the AttackBox
+and access the mailbox for the `factory` user with the previously harvested `admin`
+password. And indeed, the password has been reused and we can successfully log in.
+Besides our phishing mail, there is another e-mail from `marta` with the total number of
+units that are requested to be manufactured and shipped.
+
 
 [^1]: https://tryhackme.com/room/phishing-aoc2025-h2tkye9fzU
 [^2]: https://github.com/trustedsec/social-engineer-toolkit
