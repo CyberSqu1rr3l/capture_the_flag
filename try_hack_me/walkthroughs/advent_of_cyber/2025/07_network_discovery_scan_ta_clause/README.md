@@ -65,10 +65,23 @@ the `key3.tbfc.local` domain name: `dig @<TARGET_IP_ADDRESS> TXT key3.tbfc.local
 
 Which port was the MySQL database running on?
 -----------------------------------------------------------------------------------------
+We can log in to the secret admin console on the hijacked TBFC QA website with the three
+key parts joined together. Since we now have access to the console, we can simply list
+the open ports in the OS instead of scanning them from outside, with the command
+`ss -tunlp`. Here, we discover the open port "3306" which is a default MySQL database
+port.
+
 
 Finally, what's the flag you found in the database?
 -----------------------------------------------------------------------------------------
+Since databases typically require a password for remote clients only, and not from
+the localhost, we can see the database content with the following `mysql` commands.
+This yields us a "flags" table that in turn contains the final flag.
 
+```
+$ mysql -D tbfcqa01 -e "show tables;"
+$ mysql -D tbfcqa01 -e "select * from flags;" 
+```
 
 [^1]: https://tryhackme.com/room/networkservices-aoc2025-jnsoqbxgky
 [^2]: https://nmap.org/nsedoc/scripts/banner.html
