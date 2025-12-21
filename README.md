@@ -38,7 +38,10 @@ to promote learning and should not be used for any illegal or unethical actions.
 
 Contributing
 -----------------------------------------------------------------------------------------
-TBC
+This repository represents a personal project. However, contributions in the form of
+insights, suggestions, or improvements are welcome. Constructive feedback is highly
+encouraged and appreciated. Please feel free to open an issue or submit a pull request
+if you would like to contribute.
 
 Licensing
 -----------------------------------------------------------------------------------------
