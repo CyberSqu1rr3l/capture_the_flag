@@ -24,7 +24,7 @@ are passionate about learning and improving their skills in the field of cyberse
 
 Repository Structure
 -----------------------------------------------------------------------------------------
-Try Hack Me [link] [^2]
+Try Hack Me [link to my profile @cybersquirrel] [^2]
 
 Hack The Box [link] [^3]
 
