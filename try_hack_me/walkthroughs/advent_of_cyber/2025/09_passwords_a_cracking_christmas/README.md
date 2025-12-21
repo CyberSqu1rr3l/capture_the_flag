@@ -4,3 +4,9 @@
 ▌  ▞▀▌▝▀▖▝▀▖▐▐▐ ▌ ▌▌  ▌ ▌▝▀▖     ▌ ▌ ▌ ▖▌  ▞▀▌▌ ▖▛▚ ▐ ▌ ▌▚▄▌ ▌ ▖▌ ▌▌  ▐ ▝▀▖▐ ▖▌▐ ▌▞▀▌▝▀▖
 ▘  ▝▀▘▀▀ ▀▀  ▘▘ ▝▀ ▘  ▝▀▘▀▀      ▘ ▘ ▝▀ ▘  ▝▀▘▝▀ ▘ ▘▀▘▘ ▘▗▄▘ ▝▀ ▘ ▘▘  ▀▘▀▀  ▀ ▘▝ ▘▝▀▘▀▀
 ```
+In this THM room from the Advent of Cyber 2025 event, we learn how to crack
+password-based encrypted files. [^1]
+
+-----------------------------------------------------------------------------------------
+
+[^1]: https://tryhackme.com/room/attacks-on-ecrypted-files-aoc2025-asdfghj123
