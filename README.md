@@ -42,8 +42,9 @@ TBC
 
 Licensing
 -----------------------------------------------------------------------------------------
-TBC
-
+This repository is licensed under the Creative Commons Attribution 4.0 International (CC
+BY 4.0) license. [^4]
+ 
 Acknowledgements
 -----------------------------------------------------------------------------------------
 Credits to the cybersecurity learning platforms, challenge authors, and the wider CTF
@@ -55,3 +56,4 @@ Generator (TAAG). [^1]
 [^1]: https://www.patorjk.com/software/taag/
 [^2]: https://tryhackme.com/
 [^3]: https://academy.hackthebox.com/
+[^4]: https://creativecommons.org/licenses/by/4.0/
