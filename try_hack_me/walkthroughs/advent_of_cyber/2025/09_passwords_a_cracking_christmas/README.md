@@ -36,11 +36,12 @@ At first we are unsure as to whether we are interested in detecting suspicious G
 with `nvidia-smi` or if we want to decrypt another encrypted password file. But then, we
 discover the hidden `.Passwords.kdbx` file in the home directory, which is a *Keepass
 password database 2.x KDBX*. Therefore, it is our objective to crack this password, in an
-attempted dictionary attack. Upon research, we find out that we want to use the
+attempted dictionary attack. Upon research [^4], we find out that we want to use the
 `keepass2john` command to first extract the hash for `john` to work with. Note, that
-instead of downloading it (`git clone https://github.com/ivanmrsulja/keepass2john.git`),
-we should use the desktop binary (no network connection): `~/Desktop/john/run/keepass2john
-.Passwords.kdbx > keepass_hash.txt`
+instead of downloading it, e.g. with
+`git clone https://github.com/ivanmrsulja/keepass2john.git` [^3], we should use the
+desktop binary (no network connection): `~/Desktop/john/run/keepass2john.Passwords.kdbx >
+keepass_hash.txt`
 
 With this hashed text file, we can now operate `john` using the common `rockyou.txt`
 wordlist that we already used before: 
@@ -52,3 +53,5 @@ quest. [^2]
 
 [^1]: https://tryhackme.com/room/attacks-on-ecrypted-files-aoc2025-asdfghj123
 [^2]: https://tryhackme.com/room/sq2-aoc2025-JxiOKUSD9R
+[^3]: https://github.com/ivanmrsulja/keepass2john
+[^4]: https://thinglab.org/2025/02/cracking_keepass/
