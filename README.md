@@ -24,11 +24,8 @@ are passionate about learning and improving their skills in the field of cyberse
 
 Repository Structure
 -----------------------------------------------------------------------------------------
-Try Hack Me [link to my profile @cybersquirrel] [^2]
-
-Hack The Box [link] [^3]
-
-...
+- `try_hack_me`: The interactive gamified learning platform for learning cybersecurity
+  concepts through hands-on challenges and real-world simulations. [Visit my profile @cybersquirrel on Try Hack Me](https://tryhackme.com/p/cybersquirrel) [^2]
 
 Disclaimer
 -----------------------------------------------------------------------------------------
