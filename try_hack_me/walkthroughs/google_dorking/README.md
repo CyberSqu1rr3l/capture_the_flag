@@ -95,11 +95,31 @@ QUESTION 11
 -----------------------------------------------------------------------------------------
 **Name the keyword for the path taken for content on a website.**
 
+The oath to the specific content on a website is typically called a *route*. 
+
 QUESTION 12
 -----------------------------------------------------------------------------------------
+**What would be the format used to query the site bbc.co.uk about flood defences?**
+
+We can search for results from a specific site with the `site:` command followed by the
+website. In this case, we would enter *site:bbc.co.uk flood defences* to query only
+results from the BBC containing the term "flood defences".
+
 QUESTION 13
 -----------------------------------------------------------------------------------------
+**What term would you use to search by file type?**
+
+In order to search for a file by its extension, e.g. for PDF files, enter *filetype:*
+followed by the extension name.
+
 QUESTION 14
 -----------------------------------------------------------------------------------------
+**What term can we use to look for login pages?**
+
+The search `intitle: index.of` can already reveal sensitive information that is often
+unintentionally publicly accessible. In this case, we want to query *intitle: login* for
+the specific phrase "login" to appear in the title of the page. Another commonly used
+Google Dorking search technique would be the use of `cache:` which collects Google's
+cached version of a specific URL.
 
 [^1]: https://tryhackme.com/room/googledorking
