@@ -24,12 +24,12 @@ are passionate about learning and improving their skills in the field of cyberse
 
 Repository Structure
 -----------------------------------------------------------------------------------------
-- `try_hack_me`: The interactive gamified learning platform for learning cybersecurity
-  concepts through hands-on challenges and real-world simulations.
-  [Visit my profile @cybersquirrel on Try Hack Me](https://tryhackme.com/p/cybersquirrel) [^2]
 - `root_me`: This folder contains my writeups for challenges and "CTF all the day"
   virtual environments that can be found in the hacking and infosec learning platform Root Me.
   [Visit my profile @cybersquirrel on Root Me](https://www.root-me.org/cybersquirrel) [^5]
+- `try_hack_me`: The interactive gamified learning platform for learning cybersecurity
+  concepts through hands-on challenges and real-world simulations.
+  [Visit my profile @cybersquirrel on Try Hack Me](https://tryhackme.com/p/cybersquirrel) [^2]
 
 Disclaimer
 -----------------------------------------------------------------------------------------
