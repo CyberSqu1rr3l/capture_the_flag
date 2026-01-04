@@ -13,9 +13,10 @@ Decode the string from the challenge file `ch8.txt`. [^1]
 Solution
 -----------------------------------------------------------------------------------------
 Having downloaded the ASCII table, we are certain that the string is encoded using ASCII
-to HEX and to make it easy, we power up CyberChef and enter the string in the input field
-which then results in the following snippet *Le flag de ce challenge est:
-2ac376481ae546cd689d5b91275d324e*. And indeed, the flag can be verified and is correct.
+to HEX and to make it easy, we power up CyberChef [^2] and enter the string in the input
+field. This then results in the following snippet *Le flag de ce challenge est:
+2ac376481ae546cd689d5b91275d324e*. And indeed, the flag can be as such verified and is
+correct.
 
 [^1]: https://www.root-me.org/en/Challenges/Cryptanalysis/Encoding-ASCII
 [^2]: https://cyberchef.org/
