@@ -5,38 +5,22 @@
 |    _]|_   _| |  | |  |_      |     |    |  \_/  ||    _]_|  |_||     ||  D  ||     ||_|  |_||     |
 |   [_ |     | |  | |   _]     |_____|    |   |   ||   [_  |  |  |  _  ||     ||  _  |  |  |  |  _  |
 |     ||  |  | |  | |  |                  |   |   ||     | |  |  |  |  ||     ||  |  |  |  |  |  |  |
-|_____||__|__||____||__|                  |___|___||_____| |__|  |__|__||_____||__|__|  |__|  |__|__|                                                                                                
+|_____||__|__||____||__|                  |___|___||_____| |__|  |__|__||_____||__|__|  |__|  |__|__|
 ```
+Our sad friend pepo got lost! Can you find where he is? The password is the city where
+pepo is located. [^1]
 
-Our sad friend pepo got lost! Can you find where he is ? [^1]
-
-The password is the city where pepo is located.
-
+Solution
+-----------------------------------------------------------------------------------------
+Since the challenge is referencing the Wikipedia article to Metadata [^2], we use the
+CLI tool `exiftool` to read the meta information from the challenge file `ch1.png`.
 ```
 $ exiftool ch1.png 
 ExifTool Version Number         : 11.88
 File Name                       : ch1.png
 Directory                       : .
 File Size                       : 13 kB
-File Modification Date/Time     : 2026:01:04 10:56:43+01:00
-File Access Date/Time           : 2026:01:04 10:56:43+01:00
-File Inode Change Date/Time     : 2026:01:04 10:56:43+01:00
-File Permissions                : rw-rw-r--
-File Type                       : PNG
-File Type Extension             : png
-MIME Type                       : image/png
-Image Width                     : 96
-Image Height                    : 96
-Bit Depth                       : 8
-Color Type                      : RGB with Alpha
-Compression                     : Deflate/Inflate
-Filter                          : Adaptive
-Interlace                       : Noninterlaced
-SRGB Rendering                  : Perceptual
-Gamma                           : 2.2
-Pixels Per Unit X               : 3779
-Pixels Per Unit Y               : 3779
-Pixel Units                     : meters
+<--snip-->
 Exif Byte Order                 : Big-endian (Motorola, MM)
 Image Description               : S0rry_N0_Gu3ss1ng_Gh1zm0!
 Resolution Unit                 : inches
@@ -53,5 +37,12 @@ GPS Latitude                    : 43 deg 17' 56.27" N
 GPS Longitude                   : 5 deg 22' 49.38" E
 GPS Position                    : 43 deg 17' 56.27" N, 5 deg 22' 49.38" E
 ```
+Note, that we are now interested in the location, to find out the city where Pepo is
+hiding. To get a map that shows the location of the GPS coordinates, we can use an
+online tool, like GPS coordinates [^3] to then enter the decimal degrees, minutes and
+seconds in the DMS field. The resulting city which is also the validation for this
+challenge can be thus identified to be *Marseille*.
 
 [^1]: https://www.root-me.org/en/Challenges/Steganography/EXIF-Metadata
+[^2]: https://en.wikipedia.org/wiki/Metadata
+[^3]: https://www.gps-coordinates.net/
