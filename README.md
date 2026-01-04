@@ -26,6 +26,7 @@ Repository Structure
 -----------------------------------------------------------------------------------------
 - `try_hack_me`: The interactive gamified learning platform for learning cybersecurity
   concepts through hands-on challenges and real-world simulations. [Visit my profile @cybersquirrel on Try Hack Me](https://tryhackme.com/p/cybersquirrel) [^2]
+- `root_me`: Writeups for challenges in the hacking and infosec learning platform. [Visit my profile @cybersquirrel on Root Me](https://www.root-me.org/cybersquirrel) [^5]
 
 Disclaimer
 -----------------------------------------------------------------------------------------
@@ -57,3 +58,4 @@ Generator (TAAG). [^1]
 [^2]: https://tryhackme.com/
 [^3]: https://academy.hackthebox.com/
 [^4]: https://creativecommons.org/licenses/by/4.0/
+[^5]: https://www.root-me.org/
