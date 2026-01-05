@@ -24,6 +24,11 @@ are passionate about learning and improving their skills in the field of cyberse
 
 Repository Structure
 -----------------------------------------------------------------------------------------
+- `crypto_hack`: This platform teaches cryptography through a series of puzzles that
+  teach small lessons and motivate further research. The website creators ask not to
+  publish solutions or writeups outside of the platform. Therefore, we publish results
+  unlisted with the "Solutions" link as it appears next to the challenge.
+  [Visit my profile @cybersquirrel on Crypto Hack](https://cryptohack.org/user/cybersquirrel/) [^6]
 - `root_me`: This folder contains my writeups for challenges and "CTF all the day"
   virtual environments that can be found in the hacking and infosec learning platform.
   [Visit my profile @cybersquirrel on Root Me](https://www.root-me.org/cybersquirrel) [^5]
@@ -62,3 +67,4 @@ Generator (TAAG). [^1]
 [^3]: https://academy.hackthebox.com/
 [^4]: https://creativecommons.org/licenses/by/4.0/
 [^5]: https://www.root-me.org/
+[^6]: https://cryptohack.org/
