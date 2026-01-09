@@ -29,6 +29,10 @@ Repository Structure
   publish solutions or writeups outside of the platform. Therefore, we publish results
   unlisted with the "Solutions" link as it appears next to the challenge.
   [Visit my profile @cybersquirrel on Crypto Hack](https://cryptohack.org/user/cybersquirrel/) [^6]
+- `hack_the_box`: The online platform that offers a variety of cybersecurity challenges,
+  virtual labs, and educational resources. This folder contains notes for rooms in HTB
+  Academy and challenges in HTB Labs.
+  [Visit my profile @CyberSqu1rr3l on Hack The Box](https://app.hackthebox.com/users/1682336) [^7]
 - `root_me`: This folder contains my writeups for challenges and "CTF all the day"
   virtual environments that can be found in the hacking and infosec learning platform.
   [Visit my profile @cybersquirrel on Root Me](https://www.root-me.org/cybersquirrel) [^5]
@@ -68,3 +72,4 @@ Generator (TAAG). [^1]
 [^4]: https://creativecommons.org/licenses/by/4.0/
 [^5]: https://www.root-me.org/
 [^6]: https://cryptohack.org/
+[^7]: https://www.hackthebox.com/
