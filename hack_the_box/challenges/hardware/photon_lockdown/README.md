@@ -12,7 +12,7 @@ copy of the device's firmware, which is suspected to contain hardcoded credentia
 Can you extract the password from it?
 -----------------------------------------------------------------------------------------
 First, we verify that the downloaded ZIP file has the correct SHA-256 check sum with the
-`sha256sum -c` command. Then, we extreact the ZIP archive with the given password and are
+`sha256sum -c` command. Then, we extract the ZIP archive with the given password and are
 given three files, in the `ONT/` folder. Using the `file` command, we can now find out
 that there are two text files, containing a firmware and hardware version number and a
 *SquashFS* filesystem `rootfs`. Then, we research how to mount such a filesystem and see
