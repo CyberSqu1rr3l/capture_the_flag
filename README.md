@@ -30,8 +30,8 @@ Repository Structure
   unlisted with the "Solutions" link as it appears next to the challenge.
   [Visit my profile @cybersquirrel on Crypto Hack](https://cryptohack.org/user/cybersquirrel/) [^6]
 - `hack_the_box`: The online platform that offers a variety of cybersecurity challenges,
-  virtual labs, and educational resources. This folder contains notes for rooms in HTB
-  Academy and challenges in HTB Labs.
+  virtual labs, and educational resources. This folder contains writeups for rooms in HTB
+  Academy, challenges in HTB Labs and events in HTB CTF.
   [Visit my profile @CyberSqu1rr3l on Hack The Box](https://app.hackthebox.com/users/1682336) [^7]
 - `root_me`: This folder contains my writeups for challenges and "CTF all the day"
   virtual environments that can be found in the hacking and infosec learning platform.
