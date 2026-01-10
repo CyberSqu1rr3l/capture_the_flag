@@ -13,8 +13,8 @@ Can you decrypt the flag using the encryption program?
 -----------------------------------------------------------------------------------------
 First, we verify that the downloaded ZIP file has the correct SHA-256 check sum with the
 sha256sum -c command. Then, we extract the ZIP archive with the given password and open
-up a Ghidra instance to analyze the `encrypt` binary. In the main function, we can now
-identify the steps from the original flag to the encrypted one. In order, to read the
+up a Ghidra [^2] instance to analyze the `encrypt` binary. In the main function, we can
+now identify the steps from the original flag to the encrypted one. In order, to read the
 code more easily, we now reaname the variables and types with guessed names.
 
 ```c
@@ -69,3 +69,4 @@ decryption now works. We can compile this with `gcc` and then run the executable
 the original flag `flag.dec`.
 
 [^1]: https://app.hackthebox.com/challenges/Simple%2520Encryptor?tab=play_challenge
+[^2]: https://ghidra-sre.org/
