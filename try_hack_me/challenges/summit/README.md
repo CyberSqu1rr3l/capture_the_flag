@@ -77,39 +77,100 @@ i.e. Defense Evasion. The final sigma rule validation, can be seen as below and 
 prompted with the fourth flag and an `outgoing_connections.log` in a new email.
 
 ```
-title: Modification of Windows Defender Real-Time Protection
-id: windows_registry_defender_disable_realtime
-description: Detects modifications or creations of the Windows Defender Real-Time Protection DisableRealtimeMonitoring registry value.
-
-references:
-  - https://attack.mitre.org/tactics/TA0005/
-
-tags:
-  - attack.ta0005
-  - sysmon
-
-detection:
-  selection:
-    EventID: 4663
-    ObjectType: Key
-    ObjectName: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\Real-Time Protection'
-    NewValue: 'DisableRealtimeMonitoring=1'
-  condition: selection
-
-falsepositives:
-  - Legitimate changes to Windows Defender settings.
-
-level: high
+title:           Modification of Windows Defender Real-Time Protection
+id:              windows_registry_defender_disable_realtime
+description:     Detects modifications or creations of the Windows Defender Real-Time
+                 Protection DisableRealtimeMonitoring registry value.
+references:      https://attack.mitre.org/tactics/TA0005/
+tags:            attack.ta0005, sysmon
+object_name:     HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\Real-Time Protection
+new_value:       DisableRealtimeMonitoring = 1
+false_positives: Legitimate changes to Windows Defender settings.
+level:           high
 ```
 
 What is the fifth flag you receive after successfully detecting sample5.exe?
 -----------------------------------------------------------------------------------------
 The last step in the pyramid left us with logging information of the outgoing network
-from the last 12 hours on the victim machine. 
-
+from the last 12 hours on the victim machine. One consistency, we can see, is that in a
+thirty-minute interval there are data transfers from the source to the destination IP
+address `51[.]102[.]10[.]19` of consistent 97 bytes, as highlighted in the following:
+```
+2023-08-15 09:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 09:23:45 | Source: 10.10.15.12 | Destination: 43.10.65.115 | Port: 443 | Size: 21541 bytes
+2023-08-15 09:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 10:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 10:14:21 | Source: 10.10.15.12 | Destination: 87.32.56.124 | Port: 80  | Size: 1204 bytes
+2023-08-15 10:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 11:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 11:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 11:45:09 | Source: 10.10.15.12 | Destination: 145.78.90.33 | Port: 443 | Size: 805 bytes
+2023-08-15 12:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 12:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 13:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 13:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 13:32:17 | Source: 10.10.15.12 | Destination: 72.15.61.98  | Port: 443 | Size: 26084 bytes
+2023-08-15 14:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 14:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 14:55:33 | Source: 10.10.15.12 | Destination: 208.45.72.16 | Port: 443 | Size: 45091 bytes
+2023-08-15 15:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 15:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 15:40:10 | Source: 10.10.15.12 | Destination: 101.55.20.79 | Port: 443 | Size: 95021 bytes
+2023-08-15 16:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 16:18:55 | Source: 10.10.15.12 | Destination: 194.92.18.10 | Port: 80  | Size: 8004 bytes
+2023-08-15 16:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 17:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 17:09:30 | Source: 10.10.15.12 | Destination: 77.23.66.214 | Port: 443 | Size: 9584 bytes
+2023-08-15 17:27:42 | Source: 10.10.15.12 | Destination: 156.29.88.77 | Port: 443 | Size: 10293 bytes
+2023-08-15 17:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 18:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 18:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 19:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 19:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 20:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 20:30:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+2023-08-15 21:00:00 | Source: 10.10.15.12 | Destination: 51.102.10.19 | Port: 443 | Size: 97 bytes <-
+```
+Apart from that, we can not immediately recognize any suspicious behavior, so we proceed
+to copy the source and destination address and move to the *Firewall Manager*. In here,
+we can create a new IP firewall rule, but are informed that we'll have to "use something
+different than firewall rules for this sample". Instead, we thus go to the *Sigma Rule
+Builder* and create a rule that focuses on *Sysmon Event Logs*, specifically targeted at
+*Network Connections*. This rule will detect network connections made from a host machine
+with specific conditions, such as remote IP, port, size of the connection and how often
+it occurs. At first, we enter values for the *Remote IP*, *Remote Port*, *Size* and
+*Frequency*. But then we are informed, that the attacker has evolved. So, we do not
+incorporate the IP address or port and just provide the size of 97 bytes every 30 minutes
+which equals to 1800 seconds for any remote IP or port. Note, that the *ATT&CK ID* should
+be classified to be *Command and Control (TA0011)* since this kind of traffic likely is
+a consistent communication with the attacker's C2 server. After deploying this Sigma rule
+we have annoyed Sphinx some more and received a flag.
 
 What is the final flag you receive from Sphinx?
 -----------------------------------------------------------------------------------------
-
+In the new approach proposed by Sphinx, they attached the recorded command logs from all
+previous samples to understand better what actions are performed on victims upon remote
+access for subsequent information extraction.
+```
+dir c:\ >> %temp%\exfiltr8.log
+dir "c:\Documents and Settings" >> %temp%\exfiltr8.log
+dir "c:\Program Files\" >> %temp%\exfiltr8.log
+dir d:\ >> %temp%\exfiltr8.log
+net localgroup administrator >> %temp%\exfiltr8.log
+ver >> %temp%\exfiltr8.log
+systeminfo >> %temp%\exfiltr8.log
+ipconfig /all >> %temp%\exfiltr8.log
+netstat -ano >> %temp%\exfiltr8.log
+net start >> %temp%\exfiltr8.log
+```
+Again, we want to build a sigma rule to detect the behavioural technique created by the
+malware sample. Judging from the output of commands, we suspect the malware to copy its
+output of command into a temporary logging file located at `%temp%\exfiltr8.log`. So, it
+only makes sense to detect when this log file is created or modified. For that, we select
+the *Sysmon Event Logs* and then *File Creation and Modification*. The file path is the
+temporary folder `%temp%` (note, that our Sigma rule accepts `%APPDATA%`) and the file
+name is `exfiltr8.log`. Further, the *ATT&CK ID* is classified to be *Collection (TA0009)*
+in this case. Finally, this results in the last flag from Sphinx as they end the
+penetration test now.
 
 [^1]: https://tryhackme.com/room/summit
