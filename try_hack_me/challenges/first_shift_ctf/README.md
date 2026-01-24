@@ -1,0 +1,109 @@
+```
+______ _          _     _____ _     _  __ _     _____ ___________ 
+|  ___(_)        | |   /  ___| |   (_)/ _| |   /  __ \_   _|  ___|
+| |_   _ _ __ ___| |_  \ `--.| |__  _| |_| |_  | /  \/ | | | |_   
+|  _| | | '__/ __| __|  `--. \ '_ \| |  _| __| | |     | | |  _|  
+| |   | | |  \__ \ |_  /\__/ / | | | | | | |_  | \__/\ | | | |    
+\_|   |_|_|  |___/\__| \____/|_| |_|_|_|  \__|  \____/ \_/ \_|    
+```
+This THM challenge, is a beginner-friendly CTF featuring six unique scenarios, starting
+from quick warmups and classic SOC investigations, escalating to cases that push well
+beyond the typical L1 role. [^1]
+
+[Task 3] Probably Just Fine
+-----------------------------------------------------------------------------------------
+In the first task, we want to investigate the following alert on the SOC dashboard. The
+SOC handover notes did mention, that Susan is going to attend a conference in Singapore
+but according to the SOC procedure, we still want to verify each IP address. Thus, we
+find out that the IP looks suspicious indeed, and upon contacting Susan, we find out that
+she did not log in to the company VPN. While using a public WiFi hotspot at a café, she
+was however prompted to install a "security check" tool, which she did.
+
+> Unusual VPN login of susan.martin[@]probablyfine[.]thm from 37[.]19[.]201[.]132
+> (Singapore) and a suspicious binary with the hash
+> b8e02f2bc0ffb42e8cf28e37a26d8d825f639079bf6d948f8debab6440ee5630.
+
+For this, we are given a threat intelligence database, similar to VirusTotal to check the
+reputation and other details of IP addresses, domains and file hashes. The host telemetry
+further reveals a suspicious binary with the hash.
+
+### What is the ASN number related to the IP?
+First, we run a lookup scan of the IP address with `whois <IP_ADDRESS>` to get the ASN
+number in the origin information. And indeed, we thus discover the AS followed by the
+number.
+
+### Which service is offered from this IP?
+read intro
+
+### What is the filename of the file related to the hash?
+TryDetectThis 2.0 -> <FILENAME>.exe
+
+### Based on its HTTPS certificate, how many domains are linked to the same campaign?
+The file matches one of the YARA rules made by "kevoreilly". What line is present in the rule's "condition" field?
+Lumma -> https://github.com/kevoreilly/CAPEv2/blob/master/data/yara/CAPE/Lumma.yar	
+```
+rule Lumma
+{
+    meta:
+        author = "kevoreilly"
+        description = "Lumma Payload"
+        cape_type = "Lumma Payload"
+        packed = "0ee580f0127b821f4f1e7c032cf76475df9724a9fade2e153a69849f652045f8"
+        packed = "23ff1c20b16d9afaf1ce443784fc9a025434a010e2194de9dec041788c369887"
+    strings:
+        $decode1 = {C1 (E9|EA) 02 [0-3] 0F B6 (44|4C) ?? FF 83 (F8|F9) 3D 74 05 83 (F8|F9) 2E 75 01 (49|4A) [0-30] 2E 75}
+        $decode2 = {B0 40 C3 B0 3F C3 89 C8 04 D0 3C 09 77 06 80 C1 04 89 C8 C3 89 C8 04 BF 3C}
+        $decode3 = {B0 40 C3 B0 3F C3 80 F9 30 72 ?? 80 F9 39 77 06 80 C1 04 89 C8 C3}
+        $decode4 = {89 C8 04 D0 3C 09 77 ?? [3-11] 89 C8 [0-1] C3 89 C8 04 BF 3C 1A 72 ?? 89 C8 04 9F 3C}
+    condition:
+        uint16(0) == 0x5a4d and any of them
+}
+```
+
+### The file is also mentioned in one of the TI reports. What is the title of the report mentioning this hash?
+
+[Task 4] Phishing Books
+-----------------------------------------------------------------------------------------
+
+[Task 5] Portal Drop
+-----------------------------------------------------------------------------------------
+
+[Task 6] Zero Tolerance
+-----------------------------------------------------------------------------------------
+
+[Task 7] The Crown Jewel
+-----------------------------------------------------------------------------------------
+
+[Task 8] Promotion Night
+-----------------------------------------------------------------------------------------
+
+### What was the network share path where ransomware was placed?
+
+### What is the value ransomware created to persist on reboot?
+
+### What was the most likely extension of the encrypted files?
+
+### Which MITRE technique ID was used to deploy ransomware?
+
+### What ports of SRV-ITFS did the adversary successfully scan?
+
+### What is the full path to the malware that performed the Discovery?
+
+### Which artifact did the adversary create to persist on the beachhead?
+
+### What is the MD5 hash of the embedded initial shellcode?
+
+### Which C2 framework was used by the adversary in the intrusion?
+
+### What hostname did the adversary log in from on the beachhead?
+
+### What was the UNC path that likely contained AWS credentials?
+
+### From which IP address did the adversary access AWS?
+
+### Which two sensitive files did the adversary exfiltrate from AWS?
+
+### What file did the adversary upload to S3 in place of the wiped ones?
+
+
+[^1]: https://tryhackme.com/room/first-shift-ctf
