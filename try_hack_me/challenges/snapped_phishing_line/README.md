@@ -48,11 +48,18 @@ archive.
 When was the phishing kit archive first submitted?
 -----------------------------------------------------------------------------------------
 We can use the SHA256 hash from the last result to submit to the public knowledge website
-*VirusTotal* [^2] under the search bar.
+*VirusTotal* [^2] under the search bar. Upon doing this, we can then access the details
+for the file and view it's history with the *first submission* timestamp.
 
-
-When was the SSL certificate the phishing domain used to host the phishing kit archive first logged?
+When was the SSL certificate the phishing domain used to host the phishing kit archive
+first logged?
 -----------------------------------------------------------------------------------------
+From the previous tasks, we already found out the redirection URL, whose domain we now
+want to enter to *VirusTotal* [^3]. By doing so, we find out that 10 out of 92 security
+vendors flagged this domain as malicious and under the details tab, we can discover a
+`whois` lookup with a creation date. But, for the SSL certificate we want to investigate
+the *relations* tab for an overview of historical SSl certificates. It is here, that we
+can find the first seen SSL certificate timestamp for this task.
 
 What was the email address of the user who submitted their password twice?
 -----------------------------------------------------------------------------------------
@@ -62,12 +69,31 @@ In the first and third log entry, we can view this email address.
 
 What was the email address used by the adversary to collect compromised credentials?
 -----------------------------------------------------------------------------------------
+Besides the logging file, we can also investigate the contents of the ZIP archive of
+the *Office 365* instance. In here, we have a validation folder with the suspicious
+`submit.php` file, which we discovered through a `grep -r "email"` command. And indeed,
+this file contains all the malicious code to steal a victim's information to then send
+to the adversary's email address.
 
-The adversary used other email addresses in the obtained phishing kit. What is the email address that ends in "@gmail.com"?
+The adversary used other email addresses in the obtained phishing kit. What is the email
+address that ends in "@gmail.com"?
 -----------------------------------------------------------------------------------------
+Again, we use a simple `grep -r "gmail"` recursive search in the root directory of the
+unzipped archive and immediately get the other email address that the adversary uses for
+data exfiltration.
 
 What is the hidden flag?
 -----------------------------------------------------------------------------------------
-
+From the hint, we learn that the flag contains a ".txt" extension and, with some
+adjustments, should be downloadable from the phishing URL after searching every directory
+or subdomain. However, since we are not able to install new software, due to the missing
+internet connection on our attacking machine, we can use automatic directory enumeration
+with tools such as `dirb`, `dirbuster` or `gobuster`. This forces, us to do some manual
+brute forcing with guessed file paths. Finally, we succeed with the guessed file name
+`/data/Update365/office365/flag.txt` and get a secret which appears to be Base64-encoded.
+The result we get by decoding it with `base64 -d` seems to be reversed, so we use the
+command `base64 -d | rev` instead, to obtain the flag.
+ 
 [^1]: https://tryhackme.com/room/snappedphishingline
-[^2]: 
+[^2]: https://www.virustotal.com/gui/home/search
+[^3]: https://www.virustotal.com/gui/domain/kennaroads.buzz/details
