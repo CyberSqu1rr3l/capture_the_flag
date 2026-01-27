@@ -28,18 +28,32 @@ reputation and other details of IP addresses, domains and file hashes. The host 
 further reveals a suspicious binary with the hash.
 
 ### What is the ASN number related to the IP?
-First, we run a lookup scan of the IP address with `whois <IP_ADDRESS>` to get the ASN
-number in the origin information. And indeed, we thus discover the AS followed by the
-number.
+First, we run a lookup scan of the IP address with `whois <IP_ADDRESS>` to get the 
+*Autonomous System Number* (ASN) number in the origin information. And indeed, we thus
+discover the AS followed by the number that we can enter for this task.
 
 ### Which service is offered from this IP?
-read intro
+From simply reading the introduction to this task, we are informed what service is
+offered from this IP address.
 
 ### What is the filename of the file related to the hash?
-TryDetectThis 2.0 -> <FILENAME>.exe
+This task requires us to copy the filehash from the introduction and paste it into the
+search bar of *TryDetectThis 2.0* [^2] and from this public knowledge, we can now see the
+file name as it is listed under the basic properties.
+
+### What is the threat signature that Microsoft assigned to the file?
+Under the *Vendor Analysis* there is also *Microsoft* listed as a vendor and under the
+detection name, we can discover the threat signature.
 
 ### Based on its HTTPS certificate, how many domains are linked to the same campaign?
-The file matches one of the YARA rules made by "kevoreilly". What line is present in the rule's "condition" field?
+-----------------------------------------------------------------------------------------
+From the list of contacted domains that the file is communicating with, there are a few 
+that stand out to be a possible C2 endpoint, payload delivery or secondary redirect. So,
+we start by analyzing the domain `gadgethgfub[.]icu` in our custom VirusTotal instance.
+
+One of the contacted domains is part of a large malicious infrastructure cluster. ...
+
+### The file matches one of the YARA rules made by "kevoreilly". What line is present in the rule's "condition" field?
 Lumma -> https://github.com/kevoreilly/CAPEv2/blob/master/data/yara/CAPE/Lumma.yar	
 ```
 rule Lumma
@@ -61,6 +75,16 @@ rule Lumma
 ```
 
 ### The file is also mentioned in one of the TI reports. What is the title of the report mentioning this hash?
+
+### Which team did the author of the malware start collaborating with in early 2024?
+
+### Which mentioned infostealer targets Android systems?
+A Mexican-based affiliate related to the malware family also uses other infostealers. ...
+
+
+### Which MITRE ATT&CK sub-technique does this align with?
+The report states that the affiliates behind the malware use the services of AnonRDP.
+
 
 [Task 4] Phishing Books
 -----------------------------------------------------------------------------------------
@@ -107,3 +131,4 @@ rule Lumma
 
 
 [^1]: https://tryhackme.com/room/first-shift-ctf
+[^2]: https://static-labs.tryhackme.cloud/apps/trydetectthis/
