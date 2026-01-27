@@ -104,15 +104,130 @@ attack on "Probably Just Fine".
 
 [Task 4] Phishing Books
 -----------------------------------------------------------------------------------------
+In the second task, we are in charge of monitoring alerts from universities in London
+through our SOC dashboard. Then, we get an email from a university teacher, that raises
+our interest.
+
+> Subject: MFA Removal Requests<br>
+> From: Dr. Isabella <isabella[@]kingford[.]ac[.]uk><br><br>
+> Hey, ProbablyFine SOC Team,<br>
+> I've been getting several emails asking me to approve my MFA.<br>
+> Are you performing any tests? Should I approve these requests?<br>
+> Dr. Isabella
+
+So, we immediately contact Dr. Isabella, as it is clear she has been targeted in a
+phishing campaign. Further, we want to investigate the original `.eml` file to find out
+if this was an isolated hit, or part of a larger scheme targeting universities.
+
+### Which specific check within the headers explains the bypass of email filters?
+Answer Example: "CHECK=value"
+
+### What technique did the attacker use to make the message seem legitimate?
+
+### Which MITRE technique and sub-technique ID best fit this sender address trick?
+
+### What is the file extension of the attached file?
+
+### What is the MD5 hash of the .HTML file?
+
+### What is the landing page of the phishing attack?
+
+### Which MITRE technique ID was used inside the attached file?
+
+### What is the hidden message the attacker left in the file?
+
+### Which line in the attached file is responsible for decoding the URL redirect?
+
+### What is the first URL in the redirect chain?
+
+### What is the Threat Actor associated with this malicious file and/or URL?
+
+### What is the main target of this Threat Actor according to MITRE?
 
 [Task 5] Portal Drop
 -----------------------------------------------------------------------------------------
 
+### What is the IP address that initiated the brute force on the CRM web portal?
+
+### How many successful and failed logins are seen in the logs?
+Answer Example: 42, 56
+
+### Following the brute force, which user-agent was used for the file upload?
+
+### What was the name of the suspicious file uploaded by the attacker?
+
+### At what time did the attacker first invoke the uploaded script?
+Answer Example: 2025-10-24 15:35:50
+
+### What is the first decoded command the attacker ran on the CRM?
+
+### Based on the attacker’s activity on the CRM, which MITRE ATT&CK Persistence sub-technique ID is most applicable?
+
+### Which process image executes attacker commands received from the web?
+
+### What command allowed the attacker to open a bash reverse shell?
+
+### Which Linux user executes the entered malicious commands?
+
+### What sensitive CRM configuration file did the attacker access? 
+
+### Which domain was used to exfiltrate the CRM portal database?
+
+### What flag do you get after completing all 12 EDR response actions?
+
 [Task 6] Zero Tolerance
 -----------------------------------------------------------------------------------------
 
+### What is the hostname where the Initial Access occurred?
+
+### What MITRE subtechnique ID describes the initial code execution on the beachhead?
+
+### What is the full path of the malicious file that led to Initial Access?
+
+### What is the full path to the LOLBin abused by the attacker for Initial Access?
+
+### What is the IP address of the attacker's Command & Control server?
+
+### What is the full path of the process responsible for the C2 beaconing?
+
+### What is the full path, modified for Persistence on the beachhead host?
+
+### What tool and parameter did the threat actor use for credential dumping?
+
+### What security parameter did they attempt to change?
+The threat actor executed a command to evade defenses.
+
+### What is the process ID (PID) that executed the remote command?
+The threat actor used a tool to execute remote commands on other machines.
+
+### At what time did the threat actor pivot from the beachhead to another system?
+Answer format: YYYY-MM-DD HH:MM:SS
+
+### What is the full path of the PowerShell script used by the threat actor to collect data?
+
+### What are the first 4 file extensions targeted by this script for exfiltration?
+Answer format: Chronological, comma-separated
+
+### What is the full path to the staged file containing collected files?
+
 [Task 7] The Crown Jewel
 -----------------------------------------------------------------------------------------
+
+### From which internal IP did the suspicious connection originate?
+
+### What outbound connection was detected as a C2 channel? (Answer example: 1.2.3.4:9996)
+
+### Which MAC address is impersonating the gateway 10.10.10.1?
+
+### What is the non-standard User-Agent hitting the Jira instance?
+
+### How many ARP spoofing attacks were observed in the PCAP?
+
+### What's the payload containing the plaintext creds found in the POST request?
+
+### What domain, owned by the attacker, was used for data exfiltration?
+
+### After examining the logs, which protocol was used for data exfiltration?
 
 [Task 8] Promotion Night
 -----------------------------------------------------------------------------------------
