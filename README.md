@@ -33,6 +33,8 @@ Repository Structure
   virtual labs, and educational resources. This folder contains writeups for rooms in HTB
   Academy, challenges in HTB Labs and events in HTB CTF.
   [Visit my profile @CyberSqu1rr3l on Hack The Box](https://app.hackthebox.com/users/1682336) [^7]
+- `mystery_twister`: Serves a collection of solutions for riddles from the cipher
+  contest platform. Discover my profile @cybersquirrel on MysteryTwister. [^8]
 - `root_me`: This folder contains my writeups for challenges and "CTF all the day"
   virtual environments that can be found in the hacking and infosec learning platform.
   [Visit my profile @cybersquirrel on Root Me](https://www.root-me.org/cybersquirrel) [^5]
@@ -73,3 +75,4 @@ Generator (TAAG). [^1]
 [^5]: https://www.root-me.org/
 [^6]: https://cryptohack.org/
 [^7]: https://www.hackthebox.com/
+[^8]: https://mysterytwister.org/
