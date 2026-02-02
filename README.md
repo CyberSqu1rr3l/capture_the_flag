@@ -35,6 +35,8 @@ Repository Structure
   [Visit my profile @CyberSqu1rr3l on Hack The Box](https://app.hackthebox.com/users/1682336) [^7]
 - `mystery_twister`: Serves a collection of solutions for riddles from the cipher
   challenge contest platform. Discover my profile @cybersquirrel on MysteryTwister. [^8]
+- `over_the_wire`: With this collection of solutions for wargames offered by OverTheWire,
+  we can learn about security concepts. [^10]
 - `root_me`: This folder contains my writeups for challenges and "CTF all the day"
   virtual environments that can be found in the hacking and infosec learning platform.
   [Visit my profile @cybersquirrel on Root Me](https://www.root-me.org/cybersquirrel) [^5]
@@ -79,3 +81,4 @@ Generator (TAAG). [^1]
 [^7]: https://www.hackthebox.com/
 [^8]: https://mysterytwister.org/
 [^9]: https://ropemporium.com/
+[^10]: https://overthewire.org/wargames/
