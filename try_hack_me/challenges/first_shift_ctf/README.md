@@ -184,6 +184,8 @@ var egassem = [
   "\u0065\u0076\u006f\u006c\u0020\u0049"      
 ];
 ```
+In the `deobfuscated_variables.js` file we now provide the steps to decrypt the content
+of the `xanthium` and `egassem` variables.
 
 ### Which line in the attached file is responsible for decoding the URL redirect?
 
