@@ -120,21 +120,70 @@ phishing campaign. Further, we want to investigate the original `.eml` file to f
 if this was an isolated hit, or part of a larger scheme targeting universities.
 
 ### Which specific check within the headers explains the bypass of email filters?
-Answer Example: "CHECK=value"
+First, we check the *arch-authentication-results* to check whether any of the following
+headers are marked as failed or none, indicating an authentication failure. And indeed,
+all three of them are marked as none, i.e. `dkim=none, spf=none, dmarc=none`. Out of the
+three signatures, there is one that should be considered for this task, because it does
+not to specify how email receivers should handle emails that fail authentication.
 
 ### What technique did the attacker use to make the message seem legitimate?
+The attacker's domain `kinglord[.]ac[.]uk` is very similar to the legitimate domain
+`kingford[.]ac[.]uk`. Further, we discover in the email, that the sender's domain
+`thelondouniversity[.]ac[.]uk` is just missing an *n* before *university* to be exactly
+the legitimate email domain `thelondonuniversity[.]ac[.]uk`. The solution to this task
+is the technique that describes the registration of a lookalike domain to fool a victim
+into believing the message is from a legitimate source.
 
 ### Which MITRE technique and sub-technique ID best fit this sender address trick?
+For this, we enter "MITRE Technique" followed by the previous solution in the search bar
+of a search engine of our choice and thus get prompted with the code, that describes how
+adversaries may acquire domains that can be used during targeting. Adversaries may choose
+domains that are similar to legitimate domains, including through use of homoglyphs or
+use of a different *Top-Level Domain* (TLD). [^5]
 
 ### What is the file extension of the attached file?
+By importing the phishing email into the mail application *Evolution*, we can download
+the potentially malicious attachment and log the file extension for this task.
 
 ### What is the MD5 hash of the .HTML file?
+In the *EML-Analysis-Report.html* we can scroll down to attachments and have a look at
+the investigation key and values. Here, we can search the MD5 hash in VirusTotal which is
+also the answer for this task. Alternatively, we can also run the command `md5sum` on the
+*library-invoice.pdf.html* attachment to get the MD5 hash.
 
 ### What is the landing page of the phishing attack?
+After the static analysis of the attack, we can now move on to the dynamic analysis in
+a controlled environment, i.e. virtual machine. Therefore, we open the phishing HTML page
+*library-invoice.pdf.html* and log the landing page's URL.
 
 ### Which MITRE technique ID was used inside the attached file?
+Upon opening the attached file in a text editor, we discover an unknown type of
+JavaScript obfuscation for the variables `xanthium` and `egassem`. So, we google for the
+MITRE technique ID for obfuscated files or information and discover one with 17
+sub-techniques. Here, the description "adversaries may attempt to make an exectuable or
+file difficult to discover or analyze by encrypting, encoding, or otherwise obfuscating
+its contents on the system or transit" [^6] is fitting perfectly to what the attackers
+did here.
 
 ### What is the hidden message the attacker left in the file?
+From the previous task already, we discovered some variables with obfuscated content and
+now we aim for its decryption to find out the hidden message.
+```
+var xanthium = [
+  "\u0032\u0038\u0030\u0038\u003a",              
+  "\u006d\u006f\u0063\u002e",                          
+  "\u0032\u0033\u0034\u0032\u0033\u0065\u0077\u0063\u0033\u0031\u002d",
+  "\u0075\u006c\u0074\u0079\u0072\u0061\u0072\u0062\u0069\u0456\u006c", 
+  "\u002f\u002f\u003a\u0070\u0074\u0074\u0068"              
+];
+var egassem = [
+  "\u005e\u005e\u0020\u0073\u0065\u0069\u0072\u0061\u0072",
+  "\u0062\u0069\u006c\u0020\u006d\u006f\u0072\u0066\u0020",
+  "\u0073\u006b\u006f\u006f\u0062\u0020\u0068\u0073",
+  "\u0069\u0068\u0070\u0020\u006f\u0074\u0020",
+  "\u0065\u0076\u006f\u006c\u0020\u0049"      
+];
+```
 
 ### Which line in the attached file is responsible for decoding the URL redirect?
 
@@ -265,3 +314,5 @@ Answer format: Chronological, comma-separated
 [^2]: https://static-labs.tryhackme.cloud/apps/trydetectthis/
 [^3]: https://github.com/kevoreilly/CAPEv2/blob/master/data/yara/CAPE/Lumma.yar
 [^4]: https://www.recordedfuture.com/research/behind-the-curtain-how-lumma-affiliates-operate
+[^5]: https://attack.mitre.org/techniques/T1583/001/
+[^6]: https://attack.mitre.org/techniques/T1027/
