@@ -31,9 +31,32 @@ Question 3
 -----------------------------------------------------------------------------------------
 **Does the presented Python script guarantee which thread will reach 100% first?**
 
+We have seen that running the Python script multiple times results in different outcomes.
+In the first attempt, the second thread reaches completion first, while in another
+attempt, the first thread reaches completion first.
+
 Question 4
 -----------------------------------------------------------------------------------------
 **In the second execution of the Python script, what is the name of the thread that
 reached 100% first?**
+
+In the second execution, we could see that the first thread reaches completion before the
+second one does.
+
+Question 5
+-----------------------------------------------------------------------------------------
+**How many states did the original state diagram of “validating and conducting money
+transfer” have?**
+
+Question 6
+-----------------------------------------------------------------------------------------
+**How many states did the updated state diagram of “validating and conducting money
+transfer” have?**
+
+Question 7
+-----------------------------------------------------------------------------------------
+**How many states did the final state diagram of “validating coupon codes and applying
+discounts” have?**
+
 
 [^1]: https://tryhackme.com/room/raceconditionsattacks
