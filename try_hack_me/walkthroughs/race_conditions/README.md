@@ -109,5 +109,24 @@ negative balance account. This time, we transact $2 each in 100 parallel request
 results in a new balance of $292.99 and the flag printed in the header of the other
 account's dashboard.
 
+Question 9
+-----------------------------------------------------------------------------------------
+**What flag did you obtain after getting an account’s balance above $1000?**
+
+At first, we log in to Rasser Cond's account on our non-intercepted Firefox browser and
+recognize the balance of $100 which we aim to increase through race condition
+exploitation. Then, in the intercepted Chrome browser, we log in with Zavodni Stav's
+credentials and also discover a balance of $100. We move to the transfer page for our
+favorite contact, Rasser Cond, and start with the amount $10. Instead of redirecting
+this POST request, we now send it to the *Repeater* and duplicate it in a group for the
+maximum amount of 100. All those requests in the group can now be sent in parallel, upon
+which the target account gains a balance of over $733, yet not $1000. Since our victim
+account, lost some money on the way (it didn't reach below zero yet), we repeat the same
+procedure with the third account. Warunki Wyscigu's account still has a balance of $100,
+inviting us to use it for another race condition exploitation. This time, we intercept
+the POST request in Burp Suite again but send $20 each and create 100 duplicates in the
+groups tab of the repeater. Upon sending all the requests in the group in parallel, we
+are able to get a balance higher than a thousand dollars paired with the flag.
+
 [^1]: https://tryhackme.com/room/raceconditionsattacks
 [^2]: https://portswigger.net/burp/documentation/desktop/tools/repeater/send-group
