@@ -36,7 +36,8 @@ Repository Structure
 - `mystery_twister`: Serves a collection of solutions for riddles from the cipher
   challenge contest platform. Discover my profile @cybersquirrel on MysteryTwister. [^8]
 - `over_the_wire`: With this collection of solutions for wargames offered by OverTheWire,
-  we can learn about security concepts. [^10]
+  we can learn about security concepts, from web security, cryptography and reverse
+  engineering basics, to buffer overflows and more. [^10]
 - `owasp_juice_shop`: The OWASP Juice Shop is an open-source web application deliberately
   packed with a wide range of security flaws to help aspiring security professionals
   learn and practice web application penetration testing in a safe environment. [^11]
