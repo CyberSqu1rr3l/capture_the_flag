@@ -39,7 +39,7 @@ Repository Structure
   we can learn about security concepts. [^10]
 - `owasp_juice_shop`: The OWASP Juice Shop is an open-source web application deliberately
   packed with a wide range of security flaws to help aspiring security professionals
-  practice web application penetration testing in a safe environment. [^11]
+  learn and practice web application penetration testing in a safe environment. [^11]
 - `root_me`: This folder contains my writeups for challenges and "CTF all the day"
   virtual environments that can be found in the hacking and infosec learning platform.
   [Visit my profile @cybersquirrel on Root Me](https://www.root-me.org/cybersquirrel) [^5]
