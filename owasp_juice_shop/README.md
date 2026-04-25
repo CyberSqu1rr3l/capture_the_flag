@@ -18,7 +18,7 @@ or documents, such as OWASP Top 10, OWASP ASVS, OWASP Automated Threat Handbook 
 API Security Top 10 or MITRE’s Common Weakness Enumeration. [^7]
 
 | Category |	# |	Challenges |
-|----------|----|------------|
+|----------|---:|------------|
 | Broken Access Control |11 | Admin Section, CSRF, Easter Egg, Five-Star Feedback, Forged Feedback, Forged Review, Manipulate Basket, Product Tampering, SSRF, View Basket, Web3 Sandbox |
 | Broken Anti Automation | 4 | CAPTCHA Bypass, Extra Language, Multiple Likes, Reset Morty's Password |
 | Broken Authentication | 9 | Bjoern's Favorite Pet, Change Bender's Password, GDPR Data Erasure, Login Bjoern, Password Strength, Reset Bender's Password, Reset Bjoern's Password, Reset Jim's Password, Two Factor Authentication |
