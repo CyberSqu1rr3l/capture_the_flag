@@ -62,25 +62,49 @@ For this task, we want to browse the *Sysmon Event ID* 3 for network connections
 kind. But we can't find a cloud drive being used this way, just an event after the
 malware executed, possibly to a *Command and Control* (C2) server.
 
+Finally, we have a look at the hint and are informed that the *Event ID 22* can be used
+to look for any *DNS Queries* on the system.
+```bash
+evtx_dump.py Microsoft-Windows-Sysmon-Operational.evtx | grep -A 38 '<EventID Qualifiers="">22</EventID>'
+```
+And indeed, in the query name and result fields, we can spot a popular Cloud drive name
+that was used for distribution.
+
 Task 4
 -----------------------------------------------------------------------------------------
+**What was the timestamp changed to for the PDF file?**
 
+For many of the files it wrote to disk, the initial malicious file used a defense evasion
+technique called *Time Stomping*, where the file creation date is changed to make it
+appear older and blend in with other files. In order to find out such a *File Creation
+Time Change*, we search for its *Event ID* in the official Microsoft documentation [^3],
+and can then search for it in the event logging file.
+```bash
+evtx_dump.py Microsoft-Windows-Sysmon-Operational.evtx | grep -A 38 '<EventID Qualifiers="">2</EventID>'
+```
+However, we can discover quite many such timestamp changes for the malicious file. But
+then, we remember to search for the *PDF* file and discover only one such time stomping
+action, for which we note the *Creation UTC Time* with seconds.
 
 Task 5
 -----------------------------------------------------------------------------------------
-
+**The malicious file dropped a few files on disk. Where was `once.cmd` created on disk?**
 
 Task 6
 -----------------------------------------------------------------------------------------
-
+**The malicious file attempted to reach a dummy domain, most likely to check the internet
+connection status. What domain name did it try to connect to?**
 
 Task 7
 -----------------------------------------------------------------------------------------
-
+**Which IP address did the malicious process try to reach out to?**
 
 Task 8
 -----------------------------------------------------------------------------------------
+**The malicious process terminated itself after infecting the PC with a backdoored
+variant of UltraVNC. When did the process terminate itself?**
 
 
 [^1]: https://app.hackthebox.com/sherlocks/Unit42?tab=play_sherlock
 [^2]: https://github.com/williballenthin/python-evtx
+[^3]: https://learn.microsoft.com/en-us/windows/security/operating-system-security/sysmon/sysmon-events
