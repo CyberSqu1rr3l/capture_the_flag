@@ -22,7 +22,7 @@ mkdir /tmp/test-dir; cp data.txt /tmp/test-dir; cd /tmp/test-dir; mv data.txt he
 # 1. Revert the hex dump into binary, i.e. xxd -reverse hexdump > compressed
 xxd -r hexdump compressed
 
-# 2. The compressed file is gzip compressed data, it needs to be renamed accordingly and only then decompressed
+# 2. The compressed file is gzip compressed data, it needs to be renamed accordingly and then decompressed
 file compressed; gzip -d compressed
 mv compressed compressed.gz; gzip -d compressed.gz
 
