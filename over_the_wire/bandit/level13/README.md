@@ -29,7 +29,7 @@ mv compressed compressed.gz; gzip -d compressed.gz
 # 3. The resulting file is called compressed again but this time it's file type is bzip2 compressed data
 file compressed; bzip2 -d compressed
 
-# 4. Since the original for the compression is not known, bzip2 assumes compressed.out which is a gzip itself
+# 4. Since the original for the compression is not known, bzip2 assumes compressed.out which is gzip itself
 file compressed.out; mv compressed.out data4.gz; gzip -d data4.gz
 
 # 5. The data is a POSIX tar archive which in turn contains another POSIX tar archive data5.bin
