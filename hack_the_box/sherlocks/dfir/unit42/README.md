@@ -90,20 +90,53 @@ Task 5
 -----------------------------------------------------------------------------------------
 **The malicious file dropped a few files on disk. Where was `once.cmd` created on disk?**
 
+This task is best solved, by searching for the `once.cmd` in the Sysmon logging file as
+in the following grep search.
+```bash
+evtx_dump.py Microsoft-Windows-Sysmon-Operational.evtx | grep -A 1 'once.cmd'
+```
+Upon searching for the command, followed by the UTC creation time stamp, we discover one
+under the *CyberJunkie* user directory and note the full path for the first file.
+
 Task 6
 -----------------------------------------------------------------------------------------
 **The malicious file attempted to reach a dummy domain, most likely to check the internet
 connection status. What domain name did it try to connect to?**
 
+For this task, we decide to search for all domain addresses starting with a *www* regex
+pattern and discover a few of them.
+```bash
+evtx_dump.py Microsoft-Windows-Sysmon-Operational.evtx | grep -A 5 -B 5 'www.'
+```
+The ones that come into question, make it easy to filter out Cloud drive requests, and
+such there is only one query name suitable to be a dummy domain which was contacted by
+the malicious file.
+
 Task 7
 -----------------------------------------------------------------------------------------
 **Which IP address did the malicious process try to reach out to?**
+
+During the investigation for the previous task, we already searched for all events that
+record TCP and UDP connections, initiated by a process. We can search for such events
+with the *Event ID 3* very easily as before.
+```bash
+evtx_dump.py Microsoft-Windows-Sysmon-Operational.evtx | grep -A 33 '<EventID Qualifiers="">3</EventID>'
+```
+The output from this filtering results in only one event that matches with the
+specification perfectly and so we note it's IP address that the malware tried to contact.
 
 Task 8
 -----------------------------------------------------------------------------------------
 **The malicious process terminated itself after infecting the PC with a backdoored
 variant of UltraVNC. When did the process terminate itself?**
 
+Again, we use the official *Sysmon events* documentation provided by Microsoft [^3] to
+find the *Event ID 5* for process termination.
+```bash
+evtx_dump.py Microsoft-Windows-Sysmon-Operational.evtx | grep -A 33 '<EventID Qualifiers="">5</EventID>'
+```
+Therefore, we have found one entry that marks the end of malicious program found in task
+2 and note it's UTC system time.
 
 [^1]: https://app.hackthebox.com/sherlocks/Unit42?tab=play_sherlock
 [^2]: https://github.com/williballenthin/python-evtx
