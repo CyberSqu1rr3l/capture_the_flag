@@ -8,7 +8,7 @@ COMMANDS=(
   "cat inhere/-file07"
   "cat inhere/maybehere07/.file2"
   "cat /var/lib/dpkg/info/bandit7.password"
-  "grep -i "millionth" data.txt"
+  "grep -i 'millionth' data.txt"
   "cat data.txt | sort | uniq -u"
   "strings data.txt | grep \"==\" | tail -n 1"
   "base64 -d data.txt"
