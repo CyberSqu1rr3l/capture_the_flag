@@ -26,7 +26,7 @@ SSH with the port, is provided in the top left corner of the page.
 
 | Name | Category | Levels |
 |:-----|----------|-------:|
-| Bandit | Unix / Linux Basics | 13 / 33 |
+| Bandit | Unix / Linux Basics | 16 / 33 |
 | Natas | Web Security | 0 / 33 |
 | Krypton | Cryptography | 0 / 7 |
 | Leviathan | Reverse Engineering | 0 / 7|
@@ -39,6 +39,9 @@ SSH with the port, is provided in the top left corner of the page.
 | Drifter | Binary Exploitation / Reverse Engineering | 0 / 14 |
 | FormulaOne | Binary Exploitation / Reverse Engineering | 0 / 5 |
 | Semtex | Binary Exploitation / Reverse Engineering | 0 / 11 |
+
+In order, to continue with advanced levels, execute the `./obtain_all_passwords.sh`
+shell script and copy the password for SSH.
 
 [^1]: https://overthewire.org/wargames/
 [^2]: https://status.overthewire.org/
