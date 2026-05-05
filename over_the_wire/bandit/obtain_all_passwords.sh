@@ -14,9 +14,13 @@ COMMANDS=(
   "base64 -d data.txt"
   "tr 'A-Za-z' 'N-ZA-Mn-za-m' < data.txt"
   "mkdir /tmp/test-dir; cp data.txt /tmp/test-dir; cd /tmp/test-dir; mv data.txt hexdump; xxd -r hexdump compressed; mv compressed compressed.gz; gzip -d compressed.gz; bzip2 -d compressed; mv compressed.out data4.gz; gzip -d data4.gz; tar -xvf data4; tar -xvf data5.bin; bzip2 -d data6.bin; tar -xvf data6.bin.out; mv data8.bin data8.bin.gz; gzip -d data8.bin.gz; cat data8.bin"
+  "cat sshkey.private"
+  "cat /etc/bandit_pass/bandit14 | nc localhost 30000"
+  "cat /etc/bandit_pass/bandit15 | openssl s_client -connect localhost:30001 -ign_eof 2>/dev/null | grep -E '^[a-zA-Z0-9]{32}$'"
+  "echo 'Final Level'"
 )
 
-for i in {0..13}; do
+for i in {0..16}; do
   echo "[Note] Connecting to bandit$i with password $PASSWORD and executing \$(${COMMANDS[$i]})"
   OUTPUT=$(sshpass -p "$PASSWORD" ssh -q \
     -o PreferredAuthentications=password -o PubkeyAuthentication=no \
@@ -30,6 +34,11 @@ for i in {0..13}; do
     10) PASSWORD=$(echo "$OUTPUT" | awk '{print $NF}') ;;
     11) PASSWORD=$(echo "$OUTPUT" | awk '{print $NF}') ;;
     12) PASSWORD=$(echo "$OUTPUT" | tail -n 1 | awk '{print $NF}') ;;
+    13) echo "$OUTPUT" > sshkey.private; chmod 600 sshkey.private;
+        PASSWORD=$(ssh -i sshkey.private -q -o IdentitiesOnly=yes \
+          bandit14@bandit.labs.overthewire.org -p 2220 \
+          "cat /etc/bandit_pass/bandit14" 2> /dev/null) ;;
+    14) PASSWORD=$(echo "$OUTPUT" | awk 'NR==2') ;;
     *) PASSWORD=$OUTPUT ;;
   esac
 done
