@@ -17,10 +17,17 @@ COMMANDS=(
   "cat sshkey.private"
   "cat /etc/bandit_pass/bandit14 | nc localhost 30000"
   "cat /etc/bandit_pass/bandit15 | openssl s_client -connect localhost:30001 -ign_eof 2>/dev/null | grep -E '^[a-zA-Z0-9]{32}$'"
+  "cat /etc/bandit_pass/bandit16 | openssl s_client -connect localhost:31790 -ign_eof 2>/dev/null | awk '/BEGIN RSA PRIVATE KEY/{flag=1} flag; /END RSA PRIVATE KEY/{flag=0}'"
+  "diff --new-line-format='%L' --old-line-format='' --unchanged-line-format='' passwords.old passwords.new"
+  "cat readme"
+  "./bandit20-do cat /etc/bandit_pass/bandit20"
+  "{ echo '0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO'; sleep 2; } | nc -lp 2222 & ./suconnect 2222"
+  "cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv"
+  "cat /tmp/8ca319486bfbbc3663ea0fbe81326349"
   "echo 'Final Level'"
 )
 
-for i in {0..16}; do
+for i in {0..23}; do
   echo "[Note] Connecting to bandit$i with password $PASSWORD and executing \$(${COMMANDS[$i]})"
   OUTPUT=$(sshpass -p "$PASSWORD" ssh -q \
     -o PreferredAuthentications=password -o PubkeyAuthentication=no \
@@ -39,6 +46,11 @@ for i in {0..16}; do
           bandit14@bandit.labs.overthewire.org -p 2220 \
           "cat /etc/bandit_pass/bandit14" 2> /dev/null) ;;
     14) PASSWORD=$(echo "$OUTPUT" | awk 'NR==2') ;;
+    16) echo "$OUTPUT" > sshkey.private; chmod 600 sshkey.private;
+        PASSWORD=$(ssh -i sshkey.private -q -o IdentitiesOnly=yes \
+          bandit17@bandit.labs.overthewire.org -p 2220 \
+          "cat /etc/bandit_pass/bandit17" 2> /dev/null) ;;
+    20) PASSWORD=$(echo "$OUTPUT" | awk -F'Read:' '/Read:/ {print $1}') ;;
     *) PASSWORD=$OUTPUT ;;
   esac
 done
