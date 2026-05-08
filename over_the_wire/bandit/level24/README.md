@@ -49,6 +49,16 @@ It is our job now, to create a shell script that prints the next level's passwor
 in the `/var/spool/bandit24/foo` directory and wait for it to be executed by the
 cronjob of the next level's user.
 
-tbc ---
+First, we create a temporary directory, for example `/tmp/bandit24-pwd/` and then
+give everyone full permission on the system with `chmod 777 /tmp/bandit24-pwd/`.
+Then, we create a file in the `/var/spool/bandit24/foo` directory and make it
+executable.
+```bash
+echo 'cat /etc/bandit_pass/bandit24 > /tmp/bandit24-pwd/password.txt' > /var/spool/bandit24/foo/copy_password.sh;
+chmod +x /var/spool/bandit24/foo/copy_password.sh
+```
+This script copies the password for the next level's user to a file in our newly
+created directory. In turn, we wait up to a minute for the cron job to run it and
+can then print the contents of `/tmp/bandit24-pwd/password.txt` for the next password.
 
 [^1]: https://overthewire.org/wargames/bandit/bandit24.html
