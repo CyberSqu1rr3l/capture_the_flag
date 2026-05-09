@@ -12,6 +12,21 @@ command prompt instead of Powershell to log in via SSH to *bandit25* and *bandit
 
 Solution
 ----------------------------------------------------------------------------------------
+In order to find out the shell for the user *bandit26*, we print the contents of the
+`/etc/passwd` file and spot the line
+`bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext` that tells us
+that the user *bandit26* uses the login shell `/usr/bin/showtext`. Since this shell is
+not known to us, we print it's contents to see what it does.
+```bash
+#!/bin/sh
 
+export TERM=linux
+
+exec more ~/text.txt
+exit 0
+```
+This tells us, that when we want to login to *bandit26*, the shell sets the environment
+variable to *linux* and executes the `more` command displaying `/home/bandit26/text.txt`
+after which it quits.
 
 [^1]: https://overthewire.org/wargames/bandit/bandit26.html
