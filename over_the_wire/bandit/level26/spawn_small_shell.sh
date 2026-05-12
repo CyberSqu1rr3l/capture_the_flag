@@ -6,7 +6,6 @@ set HOST "bandit.labs.overthewire.org"
 set PORT 2220
 set USER "bandit26"
 
-
 # SAVE OLD TERMINAL SIZE =======================================================
 set OLD_ROWS [exec sh -c {stty size | awk '{print $1}'}]
 set OLD_COLS [exec sh -c {stty size | awk '{print $2}'}]
