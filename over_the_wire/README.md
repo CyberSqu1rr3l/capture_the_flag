@@ -41,7 +41,7 @@ SSH with the port, is provided in the top left corner of the page.
 | Semtex | Binary Exploitation / Reverse Engineering | 0 / 11 |
 
 In order, to continue with advanced levels, execute the `./obtain_all_passwords.sh`
-shell script in one of the categories and copy the password for SSH.
+shell script followed by one of the categories and copy the password for SSH.
 
 [^1]: https://overthewire.org/wargames/
 [^2]: https://status.overthewire.org/
