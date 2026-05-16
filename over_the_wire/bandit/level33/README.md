@@ -14,6 +14,6 @@ commands unuseful to bash, which is case-sensitive, in contrast to the Windows C
 Prompt or Powershell, for example. However, there is a trick, that we can use to spawn
 another shell, with `$0`. This launches a shell without the upper-case restrictions and
 so we can execute `cat /etc/bandit_pass/bandit33` to retrieve the password for the next
-level with ease.
+level.
 
 [^1]: https://overthewire.org/wargames/bandit/bandit33.html
