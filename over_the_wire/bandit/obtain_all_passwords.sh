@@ -1,5 +1,16 @@
 PASSWORD="bandit0"
 
+HARDCODED_PASSWORDS=(
+  [26]="s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ"
+  [27]="upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB"
+  [28]="Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN"
+  [29]="4pT1t5DENaYuqnqvadYs1oE4QLCdjmJ7"
+  [30]="qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL"
+  [31]="fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy"
+  [32]="3O9RfhqyAlVBEZpVb6LYStshZoqoSx5K"
+  [33]="tQdtbs5D5i2vJwkO8mEyYEyTL8izoeJ0"
+)
+
 COMMANDS=(
   "cat readme"
   "cat ./-"
@@ -29,7 +40,12 @@ COMMANDS=(
   "echo 'From this level onwards, the password has to be obtained manually.'"
 )
 
-for i in {0..25}; do
+for i in {0..33}; do
+  if [[ $i -ge 26 ]]; then
+    PASSWORD="${HARDCODED_PASSWORDS[$i]}"
+    echo -e "\e[33m[NOTE]\e[0m Stored the user \e[32mbandit$i\e[0m with password \e[31m$PASSWORD\e[0m"
+    continue
+  fi
   echo -e "\e[33m[NOTE]\e[0m Connecting to \e[32mbandit$i\e[0m with password \e[31m$PASSWORD\e[0m and executing \e[34m\$(${COMMANDS[$i]})\e[0m"
   OUTPUT=$(sshpass -p "$PASSWORD" ssh -q \
     -o PreferredAuthentications=password -o PubkeyAuthentication=no \
