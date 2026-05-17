@@ -24,29 +24,29 @@ are passionate about learning and improving their skills in the field of cyberse
 
 Repository Structure
 -----------------------------------------------------------------------------------------
-- `crypto_hack`: This platform teaches cryptography through a series of puzzles that
+- `./crypto_hack/` This platform teaches cryptography through a series of puzzles that
   teach small lessons and motivate further research. The website creators ask not to
   publish solutions or writeups outside of the platform. Therefore, we publish results
   unlisted with the "Solutions" link as it appears next to the challenge.
   [Visit my profile @cybersquirrel on Crypto Hack](https://cryptohack.org/user/cybersquirrel/) [^6]
-- `hack_the_box`: The online platform that offers a variety of cybersecurity challenges,
+- `./hack_the_box/` The online platform that offers a variety of cybersecurity challenges,
   virtual labs, and educational resources. This folder contains writeups for rooms in HTB
   Academy, challenges in HTB Labs and events in HTB CTF.
   [Visit my profile @CyberSqu1rr3l on Hack The Box](https://app.hackthebox.com/users/1682336) [^7]
-- `mystery_twister`: Serves a collection of solutions for riddles from the cipher
+- `./mystery_twister/` Serves a collection of solutions for riddles from the cipher
   challenge contest platform. Discover my profile @cybersquirrel on MysteryTwister. [^8]
-- `over_the_wire`: With this collection of solutions for wargames offered by OverTheWire,
+- `./over_the_wire/` With this collection of solutions for wargames offered by OverTheWire,
   we can learn about security concepts, from web security and cryptography to reverse
   engineering and more. [^10]
-- `owasp_juice_shop`: The OWASP Juice Shop is an open-source web application deliberately
+- `/owasp_juice_shop/` The OWASP Juice Shop is an open-source web application deliberately
   packed with a wide range of security flaws to help aspiring security professionals
   learn and practice web application penetration testing in a safe environment. [^11]
-- `root_me`: This folder contains my writeups for challenges and "CTF all the day"
+- `./root_me/` This folder contains my writeups for challenges and "CTF all the day"
   virtual environments that can be found in the hacking and infosec learning platform.
   [Visit my profile @cybersquirrel on Root Me](https://www.root-me.org/cybersquirrel) [^5]
-- `rop_emporium`: Learn return-oriented programming with these writeups for ROP Emporium
+- `./rop_emporium/` Learn return-oriented programming with these writeups for ROP Emporium
   challenges. [^9]
-- `try_hack_me`: The interactive gamified learning platform for learning cybersecurity
+- `./try_hack_me/` The interactive gamified learning platform for learning cybersecurity
   concepts through hands-on challenges and real-world simulations.
   [Visit my profile @cybersquirrel on Try Hack Me](https://tryhackme.com/p/cybersquirrel) [^2]
 
