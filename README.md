@@ -44,7 +44,7 @@ Repository Structure
 - `./root_me/` This folder contains my writeups for challenges and "CTF all the day"
   virtual environments that can be found in the hacking and infosec learning platform.
   [Visit my profile @cybersquirrel on Root Me](https://www.root-me.org/cybersquirrel) [^5]
-- `./rop_emporium/` Learn return-oriented programming with these writeups for ROP Emporium
+- `./rop_emporium/` Learn return-oriented programming with these ROP Emporium
   challenges. [^9]
 - `./try_hack_me/` The interactive gamified learning platform for learning cybersecurity
   concepts through hands-on challenges and real-world simulations.
