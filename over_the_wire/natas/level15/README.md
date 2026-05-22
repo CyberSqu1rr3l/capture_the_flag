@@ -25,9 +25,13 @@ We start by providing the username *natas14* and the password
 >
 > Access denied!
 
-So, we were prevented from logging in because the of a query number check. However, a few
-lines above that, we discover an if block to `array_key_exists("debug", $_GET)` which
-allows a query to be executed when there is a GET request. So, we change the URL to
-`http://natas14.natas.labs.overthewire.org/index.php?debug=` ... tbc
+So, we were prevented from logging in because the of a query number check. Further, a
+few lines above that, we discover an if block to `array_key_exists("debug", $_GET)`
+which allows a query to be executed when there is a GET request. We thus change the URL
+to `http://natas14.natas.labs.overthewire.org/index.php?debug=` but can't notice a
+visible change or more debugging information. Then, we revisit our SQLi and notice that
+we might not have handled the `"` usage well. So, we try again, with the password
+`test" OR "1"="1` and *natas14* and are allowed to log in to see the next level's
+password.
 
 [^1]: https://overthewire.org/wargames/natas/natas15.html
