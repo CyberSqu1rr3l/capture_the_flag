@@ -27,7 +27,7 @@ SSH with the port, is provided in the top left corner of the page.
 | Name | Category | Levels |
 |:-----|:--------:|:------:|
 | Bandit | Unix / Linux Basics | 33 / 33 |
-| Natas | Web Security | 12 / 33 |
+| Natas | Web Security | 15 / 33 |
 | Krypton | Cryptography | 0 / 7 |
 | Leviathan | Reverse Engineering | 0 / 7|
 | Narnia | Binary Exploitation / Reverse Engineering | 0 / 9 |
