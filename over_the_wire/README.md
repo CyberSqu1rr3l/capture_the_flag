@@ -29,7 +29,7 @@ SSH with the port, is provided in the top left corner of the page.
 | Bandit | Unix / Linux Basics | 33 / 33 |
 | Natas | Web Security | 15 / 33 |
 | Krypton | Cryptography | 0 / 7 |
-| Leviathan | Reverse Engineering | 0 / 7|
+| Leviathan | Reverse Engineering | 2 / 7|
 | Narnia | Binary Exploitation / Reverse Engineering | 0 / 9 |
 | Behemoth | Binary Exploitation / Reverse Engineering | 0 / 8 |
 | Utumno | Binary Exploitation / Reverse Engineering | 0 / 8 |
