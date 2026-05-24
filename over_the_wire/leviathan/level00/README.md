@@ -24,6 +24,14 @@ Leviathan, so be sure to learn them here.
 
 Solution
 ----------------------------------------------------------------------------------------
+At first, we try to login via `ssh leviathan0@leviathan.labs.overthewire.org -p 2223`
+but since we are not being asked for a password due to too many SSH keys that are tried
+first, we have to force a password-only authentication method instead.
+```bash
+ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no leviathan0@leviathan.labs.overthewire.org -p 2223
+```
+With this and the provided password, we are allowed to login and can browse the home
+directory for the next challenge.
 
 [^1]: https://overthewire.org/wargames/leviathan/
 [^2]: https://en.wikipedia.org/wiki/Dynamic_program_analysis
