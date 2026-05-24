@@ -3,7 +3,7 @@
 MODE="$1"
 
 if [[ -z "$MODE" ]]; then
-  echo -e "\e[31m[ERROR]\e[0m Missing argument, must provide one of these catagories $0 {bandit|natas}"
+  echo -e "\e[31m[ERROR]\e[0m Missing argument, must provide one of these catagories $0 {bandit|leviathan|natas}"
   exit 1
 fi
 
@@ -95,14 +95,44 @@ elif [[ "$MODE" == "natas" ]]; then
     "0n35PkggAPm2zbEpOU802c0x0Msn1ToK"
     "0RoJwHdSKWFTYR5WuiAewauSuNaBXned"
     "bmg8SvU1LizuWjx3y7xkNERkHxGre0GS"
-    "xcoXLmzMkoIP9D7hlgPlh9XD7OgLAe5Q "
+    "xcoXLmzMkoIP9D7hlgPlh9XD7OgLAe5Q"
+    "ZE1ck82lmdGIoErlhQgWND6j2Wzz6b6t"
+    "t7I5VHvpa14sJTUGV0cbEsbYfFP2dmOu"
+    "UJdqkK1pTu6VLt9UHWAgRZz6sVUZ3lEk"
+    "yZdkjAYZRd3R7tq7T5kXMjMJlOIkzDeB"
+    "trbs5pCjCrkuSknBBKHhaBxq6Wm1j3LC"
+    "z3UYcr4v4uBpeX8f7EZbMHlzK4UR2XtQ"
+    "SdqIqBsFcz3yotlNYErZSZwblkm0lrvx"
   )
 
   for i in "${!HARDCODED_PASSWORDS[@]}"; do
     echo -e "\e[33m[NOTE]\e[0m Use \e[32mnatas$i\e[0m to connect to \e[34mhttp://natas$i.natas.labs.overthewire.org/\e[0m with password \e[31m${HARDCODED_PASSWORDS[$i]}\e[0m"
   done
 
+elif [[ "$MODE" == "leviathan" ]]; then
+
+  PASSWORD="leviathan0"
+
+  COMMANDS=(
+    "grep -oiP 'the password for leviathan1 is \K[^\"]+' ~/.backup/bookmarks.html"
+    "{ printf 'sex\n'; sleep 1; printf 'cat /etc/leviathan_pass/leviathan2\n'; } | ./check"
+    "echo 'For this level the password is stored and has to be obtained manually.'"
+  )
+
+  for i in {0..2}; do
+    printf "\e[33m[NOTE]\e[0m Connecting to \e[32mleviathan%d\e[0m with password \e[31m%s\e[0m and executing \e[34m%s\e[0m\n" \
+      "$i" "$PASSWORD" "${COMMANDS[$i]}"
+    OUTPUT=$(sshpass -p "$PASSWORD" ssh -q \
+      -o PreferredAuthentications=password -o PubkeyAuthentication=no \
+      leviathan$i@leviathan.labs.overthewire.org -p 2223 \
+      "${COMMANDS[$i]}" 2> /dev/null)
+    case $i in
+      1) PASSWORD=$(echo "$OUTPUT" | head -n1) ;;
+      *) PASSWORD=$OUTPUT ;;
+    esac
+  done
+
 else
-  echo -e "\e[31m[ERROR]\e[0m Invalid argument \"$MODE\" use either of these catagories $0 {bandit|natas}"
+  echo -e "\e[31m[ERROR]\e[0m Invalid argument \"$MODE\" use either of these catagories $0 {bandit|leviathan|natas}"
   exit 1
 fi
