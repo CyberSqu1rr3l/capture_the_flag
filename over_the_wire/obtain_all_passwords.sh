@@ -3,7 +3,7 @@
 MODE="$1"
 
 if [[ -z "$MODE" ]]; then
-  echo -e "\e[31m[ERROR]\e[0m Missing argument, must provide one of these catagories $0 {bandit|leviathan|natas}"
+  echo -e "\e[31m[ERROR]\e[0m Missing argument, must provide one of these catagories $0 {bandit|krypton|leviathan|natas}"
   exit 1
 fi
 
@@ -132,7 +132,30 @@ elif [[ "$MODE" == "leviathan" ]]; then
     esac
   done
 
+elif [[ "$MODE" == "krypton" ]]; then
+
+  PASSWORD="KRYPTONISGREAT"
+
+  COMMANDS=(
+    "echo 'The level zero is not used in krypton, so this should not appear.'"
+    "tr 'A-Za-z' 'N-ZA-Mn-za-m' <<< \$(cat /krypton/krypton1/krypton2)"
+    "echo 'For this level the password is stored and has to be obtained manually.'"
+  )
+
+  for i in {1..2}; do
+    printf "\e[33m[NOTE]\e[0m Connecting to \e[32mkrypton%d\e[0m with password \e[31m%s\e[0m and executing \e[34m%s\e[0m\n" \
+      "$i" "$PASSWORD" "${COMMANDS[$i]}"
+    OUTPUT=$(sshpass -p "$PASSWORD" ssh -q \
+      -o PreferredAuthentications=password -o PubkeyAuthentication=no \
+      krypton$i@krypton.labs.overthewire.org -p 2231 \
+      "${COMMANDS[$i]}" 2> /dev/null)
+    case $i in
+      1) PASSWORD=$(echo "$OUTPUT" | awk '{print $NF}') ;;
+      *) PASSWORD=$OUTPUT ;;
+    esac
+  done
+
 else
-  echo -e "\e[31m[ERROR]\e[0m Invalid argument \"$MODE\" use either of these catagories $0 {bandit|leviathan|natas}"
+  echo -e "\e[31m[ERROR]\e[0m Invalid argument \"$MODE\" use either of these catagories $0 {bandit|krypton|leviathan|natas}"
   exit 1
 fi
