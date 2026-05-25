@@ -20,7 +20,7 @@ connect via SSH with the username on port 2231 and enforce password authenticati
 the thus retrieved password after Base64 decoding.
 
 ```bash
-ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no krypton1@leviathan.labs.overthewire.org -p 2231
+ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no krypton1@krypton.labs.overthewire.org -p 2231
 ```
 
 [^1]: https://overthewire.org/wargames/krypton/krypton0.html
