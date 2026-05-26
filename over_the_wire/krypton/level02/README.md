@@ -42,6 +42,19 @@ ciphertext  keyfile.dat
 
 Solution
 ----------------------------------------------------------------------------------------
-
+Once again, a substitution cipher is presented, but this time it can be shifted by any
+set number. For that, we can either use the `caesar` utility on our host machine or the
+provided `encrypt` binary on the server. Since, the `encrypt` binary looks for a keyfile
+in the current directory, we create a link to the keyfile in a temporary folder and give
+it access to this working directory as in the task description example. Finally, we can
+run the `encrypt` binary on any file, for example the alphabet. This, way the resulting
+ciphertext will be the shifted alphabet which can be directly passed into `tr` to obtain
+the next level's password.
+```bash
+mktemp -d; cd /tmp/tmp.VNvKpOuuIx; ln -s /krypton/krypton2/keyfile.dat; chmod 777 .
+echo 'abcdefghijklmnopqrstuvwxyz' > plaintext
+/krypton/krypton2/encrypt plaintext
+cat /krypton/krypton2/krypton3 | tr $(cat ciphertext) 'A-Z' # equals tr 'M-ZA-L' 'A-Z'
+```
 
 [^1]: https://overthewire.org/wargames/krypton/krypton2.html
