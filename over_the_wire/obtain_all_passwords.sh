@@ -140,10 +140,11 @@ elif [[ "$MODE" == "krypton" ]]; then
     "echo 'The level zero is not used in krypton, so this should not appear.'"
     "tr 'A-Za-z' 'N-ZA-Mn-za-m' <<< \$(cat /krypton/krypton1/krypton2)"
     "cat /krypton/krypton2/krypton3 | tr 'M-ZA-L' 'A-Z'"
+    "cat /krypton/krypton3/krypton4 | tr 'SYQUUKBNWVGCJDIXMA' 'epasswordlnithvfub'"
     "echo 'For this level the password is stored and has to be obtained manually.'"
   )
 
-  for i in {1..3}; do
+  for i in {1..4}; do
     printf "\e[33m[NOTE]\e[0m Connecting to \e[32mkrypton%d\e[0m with password \e[31m%s\e[0m and executing \e[34m%s\e[0m\n" \
       "$i" "$PASSWORD" "${COMMANDS[$i]}"
     OUTPUT=$(sshpass -p "$PASSWORD" ssh -q \
@@ -152,6 +153,7 @@ elif [[ "$MODE" == "krypton" ]]; then
       "${COMMANDS[$i]}" 2> /dev/null)
     case $i in
       1) PASSWORD=$(echo "$OUTPUT" | awk '{print $NF}') ;;
+      3) PASSWORD=$(echo "$OUTPUT" | awk '{print toupper($NF)}') ;;
       *) PASSWORD=$OUTPUT ;;
     esac
   done
