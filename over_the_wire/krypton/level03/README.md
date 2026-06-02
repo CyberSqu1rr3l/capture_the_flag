@@ -47,7 +47,7 @@ cat krypton4 | tr 'SYQUUKBNW' 'epassword'                   # weVVd oGeJD eVeIe 
 cat krypton4 | tr 'SYQUUKBNWVG' 'epasswordln'               # welld oneJD eleIe lXoMr passw ordCs ArMJe
 cat krypton4 | tr 'SYQUUKBNWVGCJDIXMA' 'epasswordlnithvfub' # welld oneth eleve lfour passw ordis brute
 ```
-Finaly, after soem further conclusions about the context of this challenge plaintext,
+Finaly, after some further conclusions about the context of this challenge plaintext,
 we derive the password for the next level.
 
 [^1]: https://overthewire.org/wargames/krypton/krypton3.html
