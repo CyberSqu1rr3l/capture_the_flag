@@ -15,15 +15,21 @@ Obtain the flag using a very well-known vulnerability.
 **Make sure you pay attention to all the information and errors displayed and to how web
 servers are configured.**
 
-First, we scan the target IP address to make sure the default port 443 for the
-HeartBleed vulnerability is open with `nmap -sC -sV <TARGET_IP_ADDRESS>`. Then,
-we start `msfconsole` and search for "heartbleed". This way, we can select the
-auxiliary/scanner/ssl/openssl_heartbleed module to exploit the vulnerability.
-But, first we need to set the RHOST to the target IP address and verbose to true
-for detailed output. Finally, we can "run" the module and get the flag.
-
+Upon accessing the web server, we are prompted with a static page showing a music video.
+First, we scan the server with `nmap -sC -sV <TARGET_IP_ADDRESS>` and discover that there
+is an OpenSSL instance running on port *443*. Next, we start the Metasploit `msfconsole`
+and `search heartbleed`. The matching modules include
+`auxiliary/scanner/ssl/openssl_heartbleed`, a module to exploit the OpenSSL Heartbeat
+vulnerability. We can proceed to print `info 4` usage help about the module and thus
+discover that we need to set *RHOSTS* with `set RHOSTS` followed by the target IP 
+address. Further, we want to `set verbose true` and activate the module with `use 4`.
+Finally, we can `run` the module and investigate the heartbeat response throughly. The
+info leaked thus contains a user message with the flag.<br>
+Alternatively, we can use the command line checker tool [^5] or Python PoC script [^4]
+but we were not able to succeed this way. 
 
 [^1]: https://tryhackme.com/room/heartbleed
 [^2]: https://heartbleed.com/
 [^3]: https://www.seancassidy.me/diagnosis-of-the-openssl-heartbleed-bug.html
 [^4]: https://stackabuse.com/how-to-exploit-the-heartbleed-bug/
+[^5]: https://github.com/FiloSottile/Heartbleed
