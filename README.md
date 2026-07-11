@@ -33,6 +33,9 @@ Repository Structure
   virtual labs, and educational resources. This folder contains writeups for rooms in HTB
   Academy, challenges in HTB Labs and events in HTB CTF.
   [Visit my profile @CyberSqu1rr3l on Hack The Box](https://app.hackthebox.com/users/1682336) [^7]
+- `./lets_defend` LetsDefend offers comprehensive interactive courses and hands-on
+  simulations, to effectively protect against cyber threats.
+  [Visit my profile @CyberSqu1rr3l on LetsDefend](https://app.letsdefend.io/user/CyberSqu1rr3l) [^12]
 - `./mystery_twister/` Serves a collection of solutions for riddles from the cipher
   challenge contest platform. Discover my profile @cybersquirrel on MysteryTwister. [^8]
 - `./over_the_wire/` With this collection of solutions for wargames offered by OverTheWire,
@@ -87,3 +90,4 @@ Generator (TAAG). [^1]
 [^9]: https://ropemporium.com/
 [^10]: https://overthewire.org/wargames/
 [^11]: https://juice-shop.github.io/
+[^12]: https://letsdefend.io/
