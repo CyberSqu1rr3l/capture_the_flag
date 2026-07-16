@@ -19,22 +19,25 @@ command-line program! [^1]
 
 Find the flag in this vulnerable web application!
 -----------------------------------------------------------------------------------------
-Upon reading this introduction text and providing some sample input into the web
-application, we immediately suspect a command injection vulnerability. If we are
-to enter "12", we get the result "Thu Jan  1 00:00:12 UTC 1970", but if we enter
-"; echo 'TEST'" we get the result "date: invalid date '@'" followed by "TEST".
-So, we are able to trick the web application into executing commands of our
-liking, and so we try the `ls`, `pwd` and `cat` commands to find out more about
-the system. This does however, not lead us to any interesting findings and with
-the help of the hint, we print the environment variables with "1; env" and get:
-
+Upon reading this introduction text and providing some sample input into the web 
+application, we immediately suspect a command injection vulnerability. Therefore, if we 
+are to enter *12*, we get the result `Thu Jan  1 00:00:12 UTC 1970`, but if we are to
+enter `; echo 'TEST'` we get the result `date: invalid date '@'"` followed by the result
+of our command *TEST*. So, we are able to trick the web application into executing 
+commands of our liking, and so we try the `ls`, `pwd` and `cat` commands to find out more
+about the system. This does however, not lead us to any interesting findings and with the
+help of the hint, we print the environment variables with `1; env` and get the environment
+variables, containing the flag and more.
 ```
 Thu Jan  1 00:00:01 UTC 1970
 HOSTNAME=e7c1352e71ec
---snip--
+PWD=/home/challenge
+HOME=/home/challenge
 GOLANG_VERSION=1.15.7
 FLAG=<REDACTED>
---snip--
+SHLVL=1
+PATH=/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+_=/usr/bin/env
 ```
 
 [^1]: https://tryhackme.com/room/epoch
