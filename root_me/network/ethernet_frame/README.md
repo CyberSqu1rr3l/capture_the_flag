@@ -24,6 +24,5 @@ Host: www.myipv6.org
 Accept: */*
 ```
 
-
 [^1]: https://www.root-me.org/en/Challenges/Network/ETHERNET-frame
 [^2]: https://cyberchef.org/
