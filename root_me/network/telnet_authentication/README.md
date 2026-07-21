@@ -1,12 +1,12 @@
 ```
 ╔╦╗╔═╗╦  ╔╗╔╔═╗╔╦╗       ╔═╗┬ ┬┌┬┐┬ ┬┌─┐┌┐┌┌┬┐┬┌─┐┌─┐┌┬┐┬┌─┐┌┐┌
  ║ ║╣ ║  ║║║║╣  ║   ───  ╠═╣│ │ │ ├─┤├┤ │││ │ ││  ├─┤ │ ││ ││││
- ╩ ╚═╝╩═╝╝╚╝╚═╝ ╩        ╩ ╩└─┘ ┴ ┴ ┴└─┘┘└┘ ┴ ┴└─┘┴ ┴ ┴ ┴└─┘┘└┘|_|
+ ╩ ╚═╝╩═╝╝╚╝╚═╝ ╩        ╩ ╩└─┘ ┴ ┴ ┴└─┘┘└┘ ┴ ┴└─┘┴ ┴ ┴ ┴└─┘┘└┘
 ```
 Find the user password in this TELNET session capture. [^1]
 
 Solution
-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 Again, we open the network capture in wireshark and are able to spot *272* packets. As
 we are familar with the *Analyze* feature, we follow the *TCP stream* [^2] and are able
 to observe the following intercept with the password in clear text.
