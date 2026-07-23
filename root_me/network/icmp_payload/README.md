@@ -15,7 +15,10 @@ analyze the ICMP contents for every packet but can not observe anything abnormal
 interesting. Also, we filter all the *MD5* hashes from the payloads and attempt to find
 any collisions through a hash lookup [^2] but without any success. Since all the ICMP
 messages are very uniform too, we can not discover any interesting error codes either. 
-[^3]
+[^3] Next, we analyze that the *17* ICMP echo replies just repeat what the request sent
+and can thus be disregarded with the filter `icmp.type == 8`. Looking at the payload
+sizes of these packets, we can now see that *16* packets contain 256 bytes and only one
+has a data length of 129 bytes.
 
 **TBC**
 
