@@ -9,7 +9,7 @@ _________
 Apply your analytical skills to analyze the malicious network traffic using Wireshark.
 [^1]
 
-Analyze the file in Wireshark to answer the questions below.
+Analyze the file in Wireshark and more, to answer the questions below.
 -----------------------------------------------------------------------------------------
 
 **What was the date and time for the first HTTP connection to the malicious IP?**
@@ -93,6 +93,43 @@ like in the task description.
 Next, we analyze the `185.106.96.158` URI and discover the same comments in the 
 *Community* tab [^3] leading us to choose these two IP addresses.
 
+**What is the Host header for the first Cobalt Strike IP address from the previous 
+question?**
+
+For this task, we filter the Wireshark packets with `ip.src == 185.106.96.158 && http`
+and then have a closer look ath the first HTTP packet details. Here, the *Request URI*
+header indicates, that the host name is included in the full URL
+`http://ocsp.verisign.com/spfooh/cacerts.crl`.
+
+**What is the domain name for the first IP address of the Cobalt Strike server?**
+
+Under the *Community* tab in VirusTotal [^3], we already discovered the following user
+commentary, which further includes the C2 server domain name for this task.
+
+> Cobalt Strike Server Found \
+> C2: HTTPS @ 185[.]106[.]96[.]158:8888 \
+> C2 Server: survmeter[.]live,/gscp[.]R/,185[.]106[.]96[.]158,/gscp[.]R/ \
+> POST URI: /supprq/sa/ \
+> Country: United States \
+> ASN: DediPath \
+> Host Header: ocsp[.]verisign[.]com
+
+**What is the domain name of the second Cobalt Strike server IP?**
+
+Again, we check the commentary for the second *Cobalt Strike* server and discover the
+following comment in the *Community* tab. Again, this comment features the domain name
+under *C2 Server* along with more information.
+
+> Cobalt Strike Server Found \
+> C2: HTTPS @ 185[.]125[.]204[.]174:4444 \
+> C2 Server: securitybusinpuff[.]com,/jquery-3[.]3[.]1[.]min[.]js,185[.]125[.]204[.]174,/jquery-3[.]3[.]1[.]min[.]js \
+> POST URI: /jquery-3[.]3[.]2[.]min[.]js \
+> Country: N/A \
+> ASN: Hydra Communications Ltd
+
+**What is the domain name of the post-infection traffic?**
+
+TBC
 -----------------------------------------------------------------------------------------
 
 
