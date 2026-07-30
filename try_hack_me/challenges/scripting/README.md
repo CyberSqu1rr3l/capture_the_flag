@@ -56,6 +56,6 @@ the flag.
 
 [Hard] Encrypted Server Chit Chat
 -----------------------------------------------------------------------------------------
-tbc
+**TBC**
 
 [^1]: https://tryhackme.com/room/scripting
