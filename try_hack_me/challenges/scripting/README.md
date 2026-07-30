@@ -34,5 +34,28 @@ or `./base64_decoder.py b64_1550406728131.txt`
 **We need to write a script that connects to a webserver, do an operation on a number
 and then move onto the next port.**
 
+For this task, we need to write a script that connects to a webserver on the correct
+port, performs a mathematical operation on a number and moves to the next port number. We
+are advised to start at zero and that the format is *operation, number, next port*. In 
+our script, we thus want to do an operation on the current port number with the given
+*number* and move to the *next port*. Note, that each port is only live for four seconds
+and that we may have to wait until port *1337* becomes live again.
+
+1. Create a socket in Python using the `sockets` library
+2. Connect to the port
+3. Send an operation
+4. View the response and continue
+
+At first, we attempt to work with the port number that is displayed on the webpage under
+port *3010* by printing the response and filtering for the port number. But then, we read
+the instruction text again, and find out that the first port number should be *1337* at
+all times. We may have to wait for it to become available though. Finally, we can execute
+the Python script with the webserver's IP address in the attacking machine
+`./webserver_operation.py [TARGET_MACHINE_IP_ADDRESS]` and obtain the final number for
+the flag.
+
+[Hard] Encrypted Server Chit Chat
+-----------------------------------------------------------------------------------------
+tbc
 
 [^1]: https://tryhackme.com/room/scripting
