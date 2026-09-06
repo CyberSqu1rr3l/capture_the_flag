@@ -136,20 +136,41 @@ Detection
 -----------------------------------------------------------------------------------------
 **How many logs are ingested in the Splunk instance?**
 
+Once we have access to the *Splunk Enterprise* instance, we go to *Search & Reporting*
+and search for `ip` for all time. This way, we can see all logs from April 4th, 2024.
 
 **What is the web hacking tool used by the attacker to exploit the vulnerability on the
 website?**
 
+For this task, we investigate the *User Agents* for all logs, and notice one suspicious
+one, that we also used in the last task of the *Exploitation* phase.
 
 **How many total events were observed related to the attack?**
 
+Next to the listing of the suspicious user agent, we can also spot a count that 
+attributed to 1.5% of all logs.
 
 **What is the observed IP address of the attacker?**
 
+Upon clicking on the suspicious web hacking tool event, we can have a look at all listed
+source IP addresses, and find only one that can be attributed to the attacker.
 
 **How many events were observed from the attacker's IP?**
 
+After filtering for the `source_ip` in the search bar and nothing else over the whole
+time period, we can find out how many events the attacker triggered.
 
 **What is the table used by the attacker to execute the attack?**
+
+For this task, we have a look at the URI filter in our logs and discover the normal
+`/api/login.php` request and a suspicious one worth investigating further. This request
+contains the SQLi attack parameters and a reference to the table used by the attacker to
+execute the attack of exfiltrating user's credential data.
+```
+/api/login.php?SSyw=7014%20AND%201=1%20UNION%20ALL%20SELECT%201,username,password,2,3,4%20FROM%20TryHack3M_users%20WHERE%20role=%22admin%22%20ORDER%20BY%20role%20LIMIT%201--/**/;%20#%20HTTP/1.1;
+```
+```sql
+SELECT 1,username,password,2,3,4 FROM [REDACTED] WHERE role=(admin) ORDER BY role LIMIT 1--
+```
 
 [^1]: https://tryhackme.com/room/subscribe
