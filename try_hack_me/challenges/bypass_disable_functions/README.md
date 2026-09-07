@@ -30,15 +30,14 @@ our `reverse_shell.sh` bash script.
 ```
 python2 chankro.py --arch 64 --input in.sh --output out.php --path /var/www/html/fa5fba5f5a39d27d8bb7fe5f518e00db
 ```
-
-
-
-`nc -lnvp <PORT>`
-
-
-`cat /home/s4vi/flag.txt`
-
-
+Then, we remember that the webserver checks the magic numbers of the file to be uploaded
+and not the file ending. So, we refer to a list of known file signatures [^3] and add
+*GIF89a* before the PHP script starts. This way, we are able to upload the file to the
+server. Before, we want to click on it under the `/uploads/` directory, we want to 
+start a listenening service on the port we provided in the reverse shell with
+`nc -lnvp <PORT>`. Finally, the webserver connects to the listener upon clicking on
+the file and we can browse it's filesystem. This leads us to the flag, which is located
+under `cat /home/s4vi/flag.txt`.
 
 [^1]: https://tryhackme.com/room/bypassdisablefunctions
 [^2]: https://www.revshells.com/
