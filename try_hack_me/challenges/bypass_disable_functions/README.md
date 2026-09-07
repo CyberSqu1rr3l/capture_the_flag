@@ -10,11 +10,16 @@ start processes. [^1]
 
 Compromise the machine and locate the `flag.txt`.
 -----------------------------------------------------------------------------------------
-
-`gobuster dir -u http://<TARGET_IP_ADDRESS> -w /usr/share/wordlists/dirb/common.txt`
-
-`/upload`
-`phpinfo.php`
+The target website offers a job listing with an *Apply Job* interface, where applicants
+can upload their CV as an image. Since we already suspect a file upload vulnerability to
+be worth investigating, we upload a random picture and inspect the network traffic. This
+way, we are not able to find out the output directory location of the uploaded file
+however, and use `gobuster` for that, e.g.
+`gobuster dir -u http://<TARGET_IP_ADDRESS> -w /usr/share/wordlists/dirb/common.txt`.
+With it, we are able to spot the `/uploads/` directory with our sample test image and
+the valuable `phpinfo.php` *PHP Version* page of the webserver configuration. On it, we
+can already spot the *Context Document Root* directory that we'll later need for our
+payload generation to be `/var/www/html/fa5fba5f5a39d27d8bb7fe5f518e00db`.
 
 
 `git clone https://github.com/TarlogicSecurity/Chankro.git`
