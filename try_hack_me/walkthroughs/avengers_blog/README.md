@@ -53,12 +53,17 @@ we are able to discover the hidden `/portal` in which avengers can sign in.
 -----------------------------------------------------------------------------------------
 **Log into the Avengers site. View the page source, how many lines of code are there?**
 
-TBC
+In order to log in, we want to make use of a SQL injection attack and begin by providing
+`' or 1=1--` for both the username and password. This way, we are able to log in and
+print the page source to find out how many lines of code it contains.
 
 [Task 7] - Remote Code Execution and Linux
 -----------------------------------------------------------------------------------------
 **Read the contents of `flag5.txt`**
 
-TBC
+Given access to the *J.A.R.V.I.S* development environment enables us to run commands
+interactively. Therefore, we find out the location of the fifth flag to be one directory
+above us with the `ls` command. However, the `cat` and `more` commands are disallowed
+and so we proceed to use `less ../flag5.txt` which allows us to see the file contents.
 
 [^1]: https://tryhackme.com/room/avengers
