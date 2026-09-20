@@ -87,11 +87,23 @@ and `nano` commands.
 
 **What is the content of the `flag2.txt` file?**
 
+From the previous task, we already know that we can run the `less` command with elevated
+privileges. After browsing the `/home/ubuntu` directory, we can discover the `flag2.txt`
+file, which we can open this way.
 
 **How would you use Nmap to spawn a root shell if your user had sudo rights on nmap?**
 
+This task requires us to look at the `nmap` entry in *GTFOBins* [^5] in order to find
+out how we could spawn an interactive system shell. Since we have *root* access on it,
+we can use `sudo nmap --interactive` in order to spawn a privileged shell.
+
 **What is the hash of *frank's* password?**
 
+Again, we have a look at *GTFOBins*, but this time for the `less` command [^6] over
+which *karen* has `sudo` access to. Since we are interested in the `/etc/shadow` file,
+which we could normally not access, we want to find out a *file read* circumvention with
+`sudo less /etc/hosts`. Having done this, we can examine the passwords file with
+`:e /etc/shadow` which shows us the password hash of *frank*.
 
 Task 7 - Privilege Escalation: SUID
 -----------------------------------------------------------------------------------------
@@ -115,3 +127,5 @@ Task 12 - Capstone Challenge
 [^2]: https://www.exploit-db.com/
 [^3]: https://nvd.nist.gov/vuln/detail/CVE-2015-1328
 [^4]: https://www.exploit-db.com/exploits/37292
+[^5]: https://gtfobins.org/gtfobins/nmap/
+[^6]: https://gtfobins.org/gtfobins/less/
