@@ -41,6 +41,6 @@ hash for the suspicious domain.
 Judging for all our past findings, we should safely draw a conclusion about whether
 this email is a phishing email or not.
 
-[^1]: https://app.letsdefend.io/challenge/phishing-email\
+[^1]: https://app.letsdefend.io/challenge/phishing-email
 [^2]: https://malwr-analysis.com/tag/storage-googleapis-com-scam/
 [^3]: https://www.virustotal.com/gui/home/search
