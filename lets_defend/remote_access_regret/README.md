@@ -31,7 +31,10 @@ After mounting the `intelvol.raw` volume, we are given a file system for the *Ma
 user and all Windows application data.
 By searching for the the *AnyDesk* application mentions in the system, we already discover
 a binary `Users/Margaret/AppData/Local/Google/Chrome/User_Data/Default/History` which
-seems to be the Chrome browsing history.
+seems to be the Chrome browsing history. However, this does not lead us to find out the
+*AnyDesk ID*, which we can instead discover a `system.conf` configuration file under
+Margaret's home directory `Users/Margaret/AppData/Roaming/AnyDesk` which contains the
+client identification and more.
 
 **Using the Chrome History database, what was the first website Margaret visited before
 encountering the scam?**
@@ -50,19 +53,48 @@ Following her browsing of recipes on the recipes website, Margaret was automatic
 redirected to the scam page with the domain `ww1[.]windows-security-alert[.]com`
 following in a subsequent redirection to a *Windows Defender Alert* page.
 
-**The scam page was cached by Chrome. Examining the cached HTML file, what phone number was displayed to the victim?**
+**The scam page was cached by Chrome. Examining the cached HTML file, what phone number 
+was displayed to the victim?**
+
+From the task description, we already know that we want to examine all cached files by
+Chrome, which are located in the directory
+`Users/Margaret/AppData/Local/Google/Chrome/User_Data/Default/Cache/Cache_Data`. Here,
+we can find only an index page without any useful information and the `f_000a1b` entry
+that contains the scam ransomware notice. Underneath the "Call Microsoft Suppport Now"
+text, we can spot the phone number of the scammer.
 
 **What is the AnyDesk ID of the remote machine that connected to Margaret's computer?**
 
+In the *AnyDesk AppData* folder, that we already discovered in Margaret's app data, we
+further spot a `connection_trace.txt` file that details the incoming connection from
+the fake *MicrosoftSupport* with its AnyDesk ID displayed on February 18th, 2025.
+
 **What alias did the scammer use for their AnyDesk connection?**
+
+This alias was already discovered in the previous task during the connection trace log.
 
 **According to the AnyDesk logs, what was the total session duration in seconds?**
 
-**The AnyDesk logs show files were exfiltrated. What is the filename (not full path) of the first file stolen from Margaret's Desktop?**
+The previous connection trace shows that the start of the session `ses_748291037` started
+at 08:41:23 AM and ended at 09:48:55 AM on the same day. Therefore, we can use `bc` or
+any calculator of our choice and input `(60+7)*60+(55-23)` to get the duration in 
+seconds.
 
-**How many bytes total were uploaded (exfiltrated) to the remote attacker during the session?**
+**The AnyDesk logs show files were exfiltrated. What is the filename of the first file
+stolen from Margaret's Desktop?**
 
-**How many total URLs were visited during the browsing session on the day of the incident?**
+In the *AnyDesk AppData* folder, we further discover an `ad.trace` file containg logs on
+the full session and file transfer. Here, we can see the bank statement PDF from 2024
+that was exfiltrated first.
+
+**How many bytes total were uploaded (exfiltrated) to the remote attacker during the 
+session?**
+
+In the same logging file, we can also observe the total transferred bytes during the
+session.
+
+**How many total URLs were visited during the browsing session on the day of the 
+incident?**
 
 From the previous `grep -r "AnyDesk"` search, we already discovered the binary 
 `Users/Margaret/AppData/Local/Google/Chrome/User_Data/Default/History` which contains
