@@ -17,10 +17,32 @@ on-disk artifacts?**
 **What is the absolute path of the file where the malware writes collected system 
 information before exfiltration?**
 
+After calculating the file's MD5 hash using the `HashMyFiles.exe` in the Virtual Machine, 
+we can query the hash in VirusTotal [^2] which provides us with further information on 
+the *harvest* binary. In particular, under *files dropped* in the behaviour section of 
+the ransomware, we can spot the file `/tmp/1606.txt` which appears to be the absolute 
+path of the temporary storage location before the exfiltration.
+
 **Which command-line option supplies the list of file extensions the ransomware targets 
 for encryption?**
 
 **What system file does the malware read to enumerate user accounts on the victim host?**
+
+Following the analysis in VirusTotal of the binary, we are informed via the following 
+insight that this file is malicious.
+From this we are already informed about the name of the file, from which extensive system
+metadata is collected.
+
+> The analyzed ELF binary is a Linux ransomware sample that performs both data
+> exfiltration and file encryption. The malware first gathers extensive system metadata,
+> including hardware specifications, environment variables, and the contents of
+> '/etc/passwd', saving this to a temporary file (e.g., '/tmp/1606.txt'). It then
+> recursively traverses the filesystem (targeting '/home/') to exfiltrate files to a
+> remote FTP server (92.255.57.58) using libcurl. Following exfiltration, it encrypts
+> user files using AES-256-CBC and RSA (OpenSSL) and appends a custom extension. Finally,
+> it drops a ransom note ('README') containing extortion demands and instructions to
+> contact the attackers via a Tor-based leak site (kd24u5e4ggp2m4k4w23lm5fu1...). The
+> binary also includes a self-deletion ('destruct') feature to hinder forensics. [^2]
 
 **What printf-style format string does the ID-generation function use to serialise its 
 random value into the 5-byte buffer it allocates?**
@@ -34,6 +56,11 @@ loop?**
 **What .onion hostname string is embedded in the ransom note the sample writes to the 
 victim's home directory?**
 
+> Attention!!! Your servers are all encrypted. And We have downloaded all you data.
+> Contact us or we will leak your data on internet.
+> Open kd24u5e4ggp2m4k4w23lm5fu1[REDACTED].onion in the Tor
+> Browser.
+
 **What command-line flag must be passed to prevent the malware from deleting itself after
 execution?**
 
@@ -41,3 +68,7 @@ execution?**
 
 
 [^1]: https://app.letsdefend.io/challenge/harvest-ransomware
+[^2]: https://www.virustotal.com/gui/file/54f17a9549c48a2c27c061ef16d1c51d89cc19d32b3b71b772ab531f296a4376/detection
+[^3]: https://valhalla.nextron-systems.com/info/rule/SUSP_LNX_Ransomware_Dec22_2
+[^4]: https://www.fortiguard.com/threat-signal-report/4736/new-conti-ransomware-campaign-observed-in-the-wild-1
+[^5]: https://www.trellix.com/blogs/research/conti-group-targets-esxi-hypervisors-with-its-linux-variant/
