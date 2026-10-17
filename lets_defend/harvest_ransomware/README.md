@@ -36,7 +36,14 @@ After calculating the file's MD5 hash using the `HashMyFiles.exe` in the Virtual
 we can query the hash in VirusTotal [^2] which provides us with further information on 
 the *harvest* binary. In particular, under *files dropped* in the behaviour section of 
 the ransomware, we can spot the file `/tmp/1606.txt` which appears to be the absolute 
-path of the temporary storage location before the exfiltration.
+path of the temporary storage location before the exfiltration. We could have also found
+out that information in the static analysis of the binary in *Ghidra*, but through
+VirusTotal we also found out several reports in the community tab, that give us an
+interesting backstory to this exercise. We find out that the `harvest` ransomware was
+part of a *Conti* campaign from a real-life incident [^4] to which researchers already 
+put up several YARA rules in order to protect systems. [^3] Further, we can read the
+analysis of the *ESXi* variant and forensics [^5] and watch a dynamic execution 
+demo. [^6]
 
 **Which command-line option supplies the list of file extensions the ransomware targets 
 for encryption?**
@@ -66,8 +73,18 @@ metadata is collected.
 **What printf-style format string does the ID-generation function use to serialise its 
 random value into the 5-byte buffer it allocates?**
 
+In the ID-generation function `lp_generate_id.c`, we can spot the printf formatting 
+"%04d" that serialises the random value `iVar2 = rand()` into a five byte buffer.
+
+```c
+snprintf(__s,5,"%04d",(ulong)(uint)(iVar2 % 10000));                          
+```
+
 **When the confirm flag is nonzero and quit is clear, what signal number causes the 
 malware to clear confirm instead of requesting traversal to stop?**
+
+The signal number to clear confirm is two instead of stopping the requesting which can
+be seen in `lp_traverser_free()`.
 
 **What is the chunk size in bytes passed to `read()` during the per-file encryption 
 loop?**
@@ -102,9 +119,12 @@ destruct (delete) the program.
 
 **What character is used to replace spaces in filenames before FTP upload?**
 
+Commonly, we would use an underscore (_) to replace spaces in filenames before a FTP
+upload and so it is the case here too.
 
 [^1]: https://app.letsdefend.io/challenge/harvest-ransomware
 [^2]: https://www.virustotal.com/gui/file/54f17a9549c48a2c27c061ef16d1c51d89cc19d32b3b71b772ab531f296a4376/detection
 [^3]: https://valhalla.nextron-systems.com/info/rule/SUSP_LNX_Ransomware_Dec22_2
 [^4]: https://www.fortiguard.com/threat-signal-report/4736/new-conti-ransomware-campaign-observed-in-the-wild-1
 [^5]: https://www.trellix.com/blogs/research/conti-group-targets-esxi-hypervisors-with-its-linux-variant/
+[^6]: https://www.youtube.com/watch?v=f6qKmbCOveU
