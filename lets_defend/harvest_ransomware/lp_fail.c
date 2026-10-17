@@ -1,4 +1,3 @@
-
 void lp_encrypt_handler(char *param_1)
 
 {
