@@ -14,6 +14,21 @@ logic, signal handling, and self-deletion behavior.
 **What is the hardcoded 4-digit victim ID embedded in the binary and used to name its
 on-disk artifacts?**
 
+We open the `harvest` binary in a new *Ghidra* project in the VM and proceed to 
+automatically analyze it. Having done this, we can investigate the `main()` function
+which lists `id = &DAT_00107246`. Therefore, it becomes clear to us, to click on that
+memory snippet and thus get a reference to the four digit victim ID.
+
+```text
+                             DAT_00107246                  XREF[2]:     main:00103e60(*), 
+                                                                        main:00103e75(*)  
+        00107246 31              ??         31h    1
+        00107247 36              ??         36h    6
+        00107248 30              ??         30h    0
+        00107249 36              ??         36h    6
+        0010724a 00              ??         00h
+```
+
 **What is the absolute path of the file where the malware writes collected system 
 information before exfiltration?**
 
@@ -25,6 +40,10 @@ path of the temporary storage location before the exfiltration.
 
 **Which command-line option supplies the list of file extensions the ransomware targets 
 for encryption?**
+
+Following the data stream from the first task, we further discover the `DAT_0010726b`
+array containing the string *exts* which makes us suspicious of the command-line option
+to supply a list of file extensions that the ransomware targets for encryption.
 
 **What system file does the malware read to enumerate user accounts on the victim host?**
 
@@ -53,8 +72,20 @@ malware to clear confirm instead of requesting traversal to stop?**
 **What is the chunk size in bytes passed to `read()` during the per-file encryption 
 loop?**
 
+After opening `lp_encrypt_handler.c` and searching for the `read()` function, we can
+spot the following line, that allocates *0x100*, i.e. *4096* bytes of memory for the
+incoming data in the per-file encryption loop.
+
+```c
+uVar5 = read(local_144c,local_1018,0x1000);
+```
+
 **What .onion hostname string is embedded in the ransom note the sample writes to the 
 victim's home directory?**
+
+In the decompiled `main()` method by Ghidra, we can discover the creation of a
+ransomware notice through a *README* file that contains the following text with an
+onion link address to send the ransom money to.
 
 > Attention!!! Your servers are all encrypted. And We have downloaded all you data.
 > Contact us or we will leak your data on internet.
@@ -63,6 +94,11 @@ victim's home directory?**
 
 **What command-line flag must be passed to prevent the malware from deleting itself after
 execution?**
+
+We already found out about the `--destruct` flag in the VirusTotal insight from task
+four. But, we can also spot it in the `decompiled_main_harvest.c` and a listing of the
+clear-text strings in `clear_text_strings_harvest.txt` with a description to self
+destruct (delete) the program.
 
 **What character is used to replace spaces in filenames before FTP upload?**
 
