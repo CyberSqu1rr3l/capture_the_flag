@@ -9,10 +9,6 @@ the steps taken and the tools used. The objective of this project is not only to
 solutions for future reference but also to share knowledge and techniques with others who
 are passionate about learning and improving their skills in the field of cybersecurity.
 
-Write-Up Statistics
------------------------------------------------------------------------------------------
-![Write-ups by Platform Graphic](https://raw.githubusercontent.com/CyberSqu1rr3l/capture_the_flag/stats/assets/writeup-stats.svg)
-
 Repository Structure
 -----------------------------------------------------------------------------------------
 - `./crypto_hack/` This platform teaches cryptography through a series of puzzles that
@@ -43,6 +39,10 @@ Repository Structure
 - `./try_hack_me/` The interactive gamified learning platform for learning cybersecurity
   concepts through hands-on challenges and real-world simulations.
   [Visit my profile @cybersquirrel on Try Hack Me](https://tryhackme.com/p/cybersquirrel) [^2]
+
+Write-Up Statistics
+-----------------------------------------------------------------------------------------
+![Write-ups by Platform Graphic](https://raw.githubusercontent.com/CyberSqu1rr3l/capture_the_flag/stats/assets/writeup-stats.svg)
 
 Disclaimer
 -----------------------------------------------------------------------------------------
