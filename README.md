@@ -9,6 +9,10 @@ the steps taken and the tools used. The objective of this project is not only to
 solutions for future reference but also to share knowledge and techniques with others who
 are passionate about learning and improving their skills in the field of cybersecurity.
 
+Write-Up Statistics
+-----------------------------------------------------------------------------------------
+![Write-ups by Platform Graphic](https://raw.githubusercontent.com/CyberSqu1rr3l/capture_the_flag/stats/assets/writeup-stats.svg)
+
 Repository Structure
 -----------------------------------------------------------------------------------------
 - `./crypto_hack/` This platform teaches cryptography through a series of puzzles that
