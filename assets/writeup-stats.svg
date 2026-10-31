@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="474" viewBox="0 0 800 474" role="img" aria-label="CTF write-ups by platform">
+<rect width="100%" height="100%" rx="18" fill="#0d1117"/>
+<text x="30" y="43" fill="#f0f6fc" font-size="24" font-weight="bold" font-family="Arial,sans-serif">CTF Write-ups by Platform</text>
+<text x="30" y="70" fill="#8b949e" font-size="14" font-family="Arial,sans-serif">181 documents counted across 8 platforms</text>
+<text x="30" y="125" fill="#c9d1d9" font-size="14" font-family="Arial,sans-serif">TryHackMe</text>
+<rect x="240" y="106" width="430" height="25" rx="5" fill="#21262d"/>
+<rect x="240" y="106" width="430" height="25" rx="5" fill="#58a6ff"/>
+<text x="691" y="125" fill="#f0f6fc" font-size="15" font-family="Arial,sans-serif">80</text>
+<text x="30" y="167" fill="#c9d1d9" font-size="14" font-family="Arial,sans-serif">OverTheWire</text>
+<rect x="240" y="148" width="430" height="25" rx="5" fill="#21262d"/>
+<rect x="240" y="148" width="312" height="25" rx="5" fill="#58a6ff"/>
+<text x="691" y="167" fill="#f0f6fc" font-size="15" font-family="Arial,sans-serif">58</text>
+<text x="30" y="209" fill="#c9d1d9" font-size="14" font-family="Arial,sans-serif">Root Me</text>
+<rect x="240" y="190" width="430" height="25" rx="5" fill="#21262d"/>
+<rect x="240" y="190" width="97" height="25" rx="5" fill="#58a6ff"/>
+<text x="691" y="209" fill="#f0f6fc" font-size="15" font-family="Arial,sans-serif">18</text>
+<text x="30" y="251" fill="#c9d1d9" font-size="14" font-family="Arial,sans-serif">Hack The Box</text>
+<rect x="240" y="232" width="430" height="25" rx="5" fill="#21262d"/>
+<rect x="240" y="232" width="59" height="25" rx="5" fill="#58a6ff"/>
+<text x="691" y="251" fill="#f0f6fc" font-size="15" font-family="Arial,sans-serif">11</text>
+<text x="30" y="293" fill="#c9d1d9" font-size="14" font-family="Arial,sans-serif">LetsDefend</text>
+<rect x="240" y="274" width="430" height="25" rx="5" fill="#21262d"/>
+<rect x="240" y="274" width="43" height="25" rx="5" fill="#58a6ff"/>
+<text x="691" y="293" fill="#f0f6fc" font-size="15" font-family="Arial,sans-serif">8</text>
+<text x="30" y="335" fill="#c9d1d9" font-size="14" font-family="Arial,sans-serif">MysteryTwister</text>
+<rect x="240" y="316" width="430" height="25" rx="5" fill="#21262d"/>
+<rect x="240" y="316" width="16" height="25" rx="5" fill="#58a6ff"/>
+<text x="691" y="335" fill="#f0f6fc" font-size="15" font-family="Arial,sans-serif">3</text>
+<text x="30" y="377" fill="#c9d1d9" font-size="14" font-family="Arial,sans-serif">ROP Emporium</text>
+<rect x="240" y="358" width="430" height="25" rx="5" fill="#21262d"/>
+<rect x="240" y="358" width="11" height="25" rx="5" fill="#58a6ff"/>
+<text x="691" y="377" fill="#f0f6fc" font-size="15" font-family="Arial,sans-serif">2</text>
+<text x="30" y="419" fill="#c9d1d9" font-size="14" font-family="Arial,sans-serif">OWASP Juice Shop</text>
+<rect x="240" y="400" width="430" height="25" rx="5" fill="#21262d"/>
+<rect x="240" y="400" width="5" height="25" rx="5" fill="#58a6ff"/>
+<text x="691" y="419" fill="#f0f6fc" font-size="15" font-family="Arial,sans-serif">1</text>
+</svg>
