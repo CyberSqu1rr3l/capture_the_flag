@@ -118,7 +118,7 @@ else:
     print("Something is wrong. Status Code: " + str(req.status_code))
     print("Results:\n" + req.text)
 ```
-We can now use this password to log in to *locien* via SSH with
+We can now use this password to log in to *lucien* via SSH with
 `ssh lucien@<TARGET_MACHINE_IP>` and view the flag.
 
 What is the Death Flag?
