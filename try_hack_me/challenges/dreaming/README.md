@@ -22,7 +22,7 @@ ffuf -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt -u http:/
 ```
 This way, we can discover the `/app` folder, as well as the `.htpasswd` and `.htaccess`
 files which are restricted. Here, in the `/app` folder, we discover a `pluck-4.7.14` web
-application for which we can already discover a file upload vulnerability. [^3]
+application [^4] for which we can already discover a file upload vulnerability. [^3]
 By clicking on it, we are redirected to the `/app/pluck-4.7.13/?file=dreaming` static web
 page. However, in the source code, we discover the `/app/pluck-4.7.13/login.php` login
 page where we can submit a password, possibly to a restricted admin panel. Here, we try
@@ -38,7 +38,7 @@ This uploaded a malicious file to the server through which we can get shell acce
 `http://<TARGET_MACHINE_IP>:80/app/pluck-4.7.13/files/shell.phar`. From here, we can
 perform some lateral movement and inspect the `/etc/passwd` file where we discover the
 *lucien*, *death* and *morpheus* users. Further, we discover some interesting files in
-the `/opt` directory. 
+the `/opt` directory for further research.
 ```python
 iimport mysql.connector
 import subprocess
@@ -130,3 +130,4 @@ What is the Morpheus Flag?
 [^1]: https://tryhackme.com/room/dreaming
 [^2]: https://ubuntu.com/security/notices/USN-7639-1
 [^3]: https://www.exploit-db.com/exploits/49909
+[^4]: https://github.com/pluck-cms/pluck
